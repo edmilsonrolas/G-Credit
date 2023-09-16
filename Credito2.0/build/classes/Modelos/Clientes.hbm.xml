@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 11/set/2023 18:45:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Clientes" table="CLIENTES" schema="CREDITO" optimistic-lock="version">
+        <id name="clienteId" type="int">
+            <column name="CLIENTE_ID" precision="8" scale="0" />
+            <generator class="sequence">
+                <param name="sequence">cliente_id_sequence</param>
+            </generator>
+        </id>
+        <property name="nome" type="string">
+            <column name="NOME" length="50" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="60" not-null="true" />
+        </property>
+        <property name="senha" type="string">
+            <column name="SENHA" length="59" not-null="true" />
+        </property>
+        <property name="nivelPerm" type="string">
+            <column name="NIVEL_PERM" length="40" not-null="true" />
+        </property>
+        <property name="status" type="boolean">
+            <column name="STATUS" precision="1" scale="0" not-null="true" />
+        </property>
+        <property name="admissao" type="date">
+            <column name="ADMISSAO" length="7" />
+        </property>
+        <set name="pedidoses" table="PEDIDOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CLIENTE_ID" precision="8" scale="0" />
+            </key>
+            <one-to-many class="Modelos.Pedidos" />
+        </set>
+    </class>
+</hibernate-mapping>

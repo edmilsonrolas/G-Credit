@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 11/set/2023 18:45:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Produtos" table="PRODUTOS" schema="CREDITO" optimistic-lock="version">
+        <id name="produtoId" type="int">
+            <column name="PRODUTO_ID" precision="8" scale="0" />
+            <generator class="sequence">
+                <param name="sequence">produto_id_sequence</param>
+            </generator>
+        </id>
+        <property name="nome" type="string">
+            <column name="NOME" length="50" not-null="true" />
+        </property>
+        <property name="preco" type="long">
+            <column name="PRECO" precision="10" scale="0" not-null="true" />
+        </property>
+        <set name="pedidoses" table="PEDIDOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PRODUTO_ID" precision="8" scale="0" />
+            </key>
+            <one-to-many class="Modelos.Pedidos" />
+        </set>
+    </class>
+</hibernate-mapping>

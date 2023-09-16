@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 11/set/2023 18:45:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Pedidos" table="PEDIDOS" schema="CREDITO" optimistic-lock="version">
+        <id name="pedidoId" type="int">
+            <column name="PEDIDO_ID" precision="8" scale="0" />
+           <generator class="sequence">
+                <param name="sequence">pedido_id_sequence</param>
+            </generator>
+        </id>
+        <many-to-one name="clientes" class="Modelos.Clientes" fetch="select">
+            <column name="CLIENTE_ID" precision="8" scale="0" />
+        </many-to-one>
+        <many-to-one name="produtos" class="Modelos.Produtos" fetch="select">
+            <column name="PRODUTO_ID" precision="8" scale="0" />
+        </many-to-one>
+        <property name="quantidade" type="int">
+            <column name="QUANTIDADE" precision="8" scale="0" not-null="true" />
+        </property>
+        <property name="dataPedido" type="date">
+            <column name="DATA_PEDIDO" length="7" />
+        </property>
+    </class>
+</hibernate-mapping>
