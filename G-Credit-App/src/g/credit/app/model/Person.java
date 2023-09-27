@@ -133,8 +133,14 @@ public abstract class Person {
      * @param email O endereço de email da pessoa.
      */
     public void setEmail(String email) {
+        // Verifica se o email está em um formato válido usando uma expressão regular
+        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        if (!email.matches(emailRegex)) {
+            throw new IllegalArgumentException("Endereço de email inválido.");
+        }
         this.email = email;
     }
+
 
     /**
      * Obtém o número de telefone da pessoa.
@@ -166,9 +172,11 @@ public abstract class Person {
     /**
      * Calcula e retorna a idade da pessoa com base na data de nascimento.
      *
-     * @return A idade da pessoa em anos, ou -1 se a data de nascimento for inválida.
+     * @return A idade da pessoa em anos.
+     * @throws DateTimeParseException Se a data de nascimento estiver em um formato inválido.
+     * @throws IllegalArgumentException Se a data de nascimento não estiver no formato "yyyy-MM-dd".
      */
-    public int getAge() {
+    public int getAge() throws DateTimeParseException, IllegalArgumentException {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate birthDate = LocalDate.parse(dateOfBirth, formatter);
@@ -176,15 +184,9 @@ public abstract class Person {
             Period period = Period.between(birthDate, currentDate);
             return period.getYears();
         } catch (DateTimeParseException e) {
-            return -1; // Retorna -1 para indicar um erro.
+            throw e; // Lança a exceção original se ocorrer um erro de análise de data.
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("A data de nascimento deve estar no formato 'yyyy-MM-dd'.", e);
         }
     }
-
-    /**
-     * Método abstrato que deve ser implementado nas subclasses para fornecer uma representação em formato de string da pessoa.
-     *
-     * @return Uma representação em formato de string da pessoa.
-     */
-    @Override
-    public abstract String toString();
 }

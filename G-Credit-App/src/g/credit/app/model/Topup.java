@@ -14,19 +14,22 @@ package g.credit.app.model;
 public class Topup {
     private String id;
     private int value;
-    private String operator;
+    private Operator operator;
     private int stockQuantity;
+    
+    public enum Operator{
+        Vodacom, Movitel, Tmcel 
+   }
 
     /**
      * Construtor para a classe Topup.
      * 
-     * @param id            O ID da recarga.
      * @param value         O valor da recarga.
      * @param operator      A operadora.
      * @param stockQuantity A quantidade em stock da recarga.
      */
-    public Topup(String id, int value, String operator, int stockQuantity) {
-        this.id = id;
+    public Topup(int value, Operator operator, int stockQuantity) {
+        generateId();    
         this.value = value;
         this.operator = operator;
         this.stockQuantity = stockQuantity;
@@ -40,14 +43,42 @@ public class Topup {
     public String getId() {
         return id;
     }
-
+    
     /**
-     * Define o ID da recarga.
-     *
-     * @param id O ID da recarga.
+     * Define o ID da recarga com base na operadora e valor.
      */
-    public void setId(String id) {
-        this.id = id;
+    private void generateId() {
+        if (operator != null && value >= 0) {
+            this.id = setOperatorCode() + value;
+        } else {
+            // Lida com valores nulos ou inválidos de operadora ou valor
+            throw new IllegalArgumentException("Operadora ou valor inválidos para criar o ID da recarga.");
+        }
+    }
+    
+    /**
+     * Define o código da operadora com base no valor do enumerador Operator.
+     *
+     * @return O código da operadora.
+     */
+    private String setOperatorCode(){
+        String operatorCode = "";
+
+            switch (operator) {
+                case Vodacom:
+                    operatorCode = "VO";
+                    break;
+                case Movitel:
+                    operatorCode = "MO";
+                    break;
+                case Tmcel:
+                    operatorCode = "TM";
+                    break;
+                default:
+                    // Lidar com o caso padrão ou inválido, se necessário.
+                    break;
+            }
+        return operatorCode;
     }
 
     /**
@@ -73,7 +104,7 @@ public class Topup {
      *
      * @return A operadora.
      */
-    public String getOperator() {
+    public Operator getOperator() {
         return operator;
     }
 
@@ -82,7 +113,7 @@ public class Topup {
      *
      * @param operator A operadora.
      */
-    public void setOperator(String operator) {
+    public void setOperator(Operator operator) {
         this.operator = operator;
     }
 

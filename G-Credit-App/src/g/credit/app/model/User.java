@@ -41,6 +41,10 @@ public class User extends Person {
     public User(String firstName, String lastName, String dateOfBirth, String email, String phone, String address,
                      String userID, Position position, double salary) {
         super(firstName, lastName, dateOfBirth, email, phone, address);
+        
+        if (salary < 0) {
+            throw new IllegalArgumentException("Salário não pode ser negativo.");
+        }
         this.userID = userID;
         this.position = position;
         this.salary = salary;
@@ -79,6 +83,10 @@ public class User extends Person {
      * @param position A posição do utilizador (superUser ou Attendant).
      */
     public void setPosition(Position position) {
+        // Verifica se a posição é uma das enumerações válidas
+        if (position != Position.superUser && position != Position.Attendant) {
+            throw new IllegalArgumentException("Posição inválida.");
+        }
         this.position = position;
     }
 
