@@ -4,6 +4,7 @@
  */
 package g.credit.app.dao;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -31,6 +32,9 @@ public class SQLiteDBConnection {
             try {
                 Class.forName("org.sqlite.JDBC");
                 connection = DriverManager.getConnection("jdbc:sqlite:G-CreditDataBase.db");
+                
+                // Chama o método para criar a tabela 'topups' se ela ainda não existir
+                createTopupsTable();
             } catch (ClassNotFoundException e) {
                 throw new SQLException("Driver JDBC SQLite não encontrado.", e);
             } catch (SQLException e) {
@@ -54,4 +58,23 @@ public class SQLiteDBConnection {
             }
         }
     }
+    
+    /**
+     * Cria a tabela 'topups' na base de dados, se ela ainda não existir.
+     *
+     * @throws SQLException Se ocorrer um erro durante a criação da tabela.
+     */
+    public static void createTopupsTable() throws SQLException {
+        String sql = "CREATE TABLE IF NOT EXISTS topups ("
+                + "id TEXT PRIMARY KEY,"
+                + "value INTEGER,"
+                + "operator TEXT,"
+                + "stock_quantity INTEGER"
+                + ")";
+
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(sql);
+        }
+    }
 }
+

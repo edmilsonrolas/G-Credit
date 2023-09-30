@@ -16,6 +16,7 @@ public class Topup {
     private int value;
     private Operator operator;
     private int stockQuantity;
+
     
     public enum Operator{
         Vodacom, Movitel, Tmcel 
@@ -35,6 +36,13 @@ public class Topup {
         this.stockQuantity = stockQuantity;
     }
 
+    public Topup(String id, int value, Operator operator, int stockQuantity) {
+        this.id = id;
+        this.value = value;
+        this.operator = operator;
+        this.stockQuantity = stockQuantity;
+    }
+    
     /**
      * Obtém o ID da recarga.
      *
