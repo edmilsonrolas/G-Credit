@@ -30,17 +30,14 @@ public class Topup {
      * @param stockQuantity A quantidade em stock da recarga.
      */
     public Topup(int value, Operator operator, int stockQuantity) {
-        generateId();    
         this.value = value;
         this.operator = operator;
         this.stockQuantity = stockQuantity;
+        generateId();    // deve ser chamado depois da inicializacao de value e operator
     }
 
-    public Topup(String id, int value, Operator operator, int stockQuantity) {
+    public void setId(String id) {
         this.id = id;
-        this.value = value;
-        this.operator = operator;
-        this.stockQuantity = stockQuantity;
     }
     
     /**
@@ -59,7 +56,6 @@ public class Topup {
         if (operator != null && value >= 0) {
             this.id = setOperatorCode() + value;
         } else {
-            // Lida com valores nulos ou inválidos de operadora ou valor
             throw new IllegalArgumentException("Operadora ou valor inválidos para criar o ID da recarga.");
         }
     }
@@ -83,7 +79,6 @@ public class Topup {
                     operatorCode = "TM";
                     break;
                 default:
-                    // Lidar com o caso padrão ou inválido, se necessário.
                     break;
             }
         return operatorCode;
@@ -146,7 +141,7 @@ public class Topup {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Topup{");
+        sb.append("\nTopup{");
         sb.append("id=").append(id);
         sb.append(", value=").append(value);
         sb.append(", operator=").append(operator);

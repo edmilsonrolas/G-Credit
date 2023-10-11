@@ -146,8 +146,9 @@ public class TopupDAO {
             String operatorStr = resultSet.getString("operator");
             Topup.Operator operator = Topup.Operator.valueOf(operatorStr);
             int stockQuantity = resultSet.getInt("stock_quantity");
-
-            return new Topup(id, value, operator, stockQuantity);
+            Topup topup = new Topup(value, operator, stockQuantity);
+            topup.setId(id);
+            return topup;
         } catch (SQLException e) {
             throw new SQLException("Erro ao mapear ResultSet para Topup.", e);
         } catch (IllegalArgumentException e) {
@@ -167,3 +168,4 @@ public class TopupDAO {
         }
     }
 }
+
