@@ -48,13 +48,39 @@ public class TopupController {
         } catch (SQLException e) {
         }
     }
+    
+    /**
+     * Aumenta a quantidade de estoque de uma recarga telefônica na base de dados.
+     *
+     * @param id       O ID da recarga telefônica.
+     * @param quantity A quantidade a ser acrescentada ao estoque da recarga.
+     * @throws SQLException Se ocorrer um erro ao acessar a base de dados.
+     */
+    public void increaseTopupStockQuantity(String id, int quantity) throws SQLException {
+        Topup topup = getTopupById(id);
+        topup.setStockQuantity(topup.getStockQuantity() + quantity);
+        updateTopup(topup);
+    }
+
+    /**
+     * Reduz a quantidade de estoque de uma recarga telefônica na base de dados.
+     *
+     * @param id       O ID da recarga telefônica.
+     * @param quantity A quantidade a ser reduzida do estoque da recarga.
+     * @throws SQLException Se ocorrer um erro ao acessar a base de dados.
+     */
+    public void decreaseTopupStockQuantity(String id, int quantity) throws SQLException {
+        Topup topup = getTopupById(id);
+        topup.setStockQuantity(topup.getStockQuantity() - quantity);
+        updateTopup(topup);
+    }
 
     /**
      * Atualiza uma recarga telefônica existente na base de dados.
      * 
      * @param topup A recarga telefônica a ser atualizada.
      */
-    public void updateTopup(Topup topup) {
+    private void updateTopup(Topup topup) {
         try {
             topupDAO.updateTopup(topup);
         } catch (SQLException e) {
