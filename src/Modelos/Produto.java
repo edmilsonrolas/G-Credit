@@ -19,11 +19,11 @@ public class Produto implements Serializable {
     private double preco;
     private double valor;
     private int quantidadeProduto;
-    private Fornecedor fornecedor;
+    private Operadora fornecedor;
     private Date entrada;
     private boolean status;
 
-    public Produto(String nomeProduto, Date validadeProduto, double preco, double valor, int quantidadeProduto, Fornecedor fornecedor) {
+    public Produto(String nomeProduto, Date validadeProduto, double preco, double valor, int quantidadeProduto, Operadora fornecedor) {
         
         this.nomeProduto = nomeProduto;
         this.validadeProduto = validadeProduto;
@@ -58,7 +58,7 @@ public class Produto implements Serializable {
         return quantidadeProduto;
     }
 
-    public Fornecedor getFornecedor() {
+    public Operadora getFornecedor() {
         return fornecedor;
     }
 
@@ -90,7 +90,7 @@ public class Produto implements Serializable {
         this.quantidadeProduto = quantidadeProduto;
     }
 
-    public void setFornecedor(Fornecedor fornecedor) {
+    public void setFornecedor(Operadora fornecedor) {
         this.fornecedor = fornecedor;
     }
 

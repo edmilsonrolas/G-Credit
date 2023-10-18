@@ -8,7 +8,7 @@ import Controllers.ClienteDAOImpl;
 import Controllers.ListaDAOImpl;
 import Controllers.VendaDAOImpl;
 import Modelos.Cliente;
-import Modelos.Fornecedor;
+import Modelos.Operadora;
 import Modelos.Lista;
 import java.util.Iterator;
 import java.util.List;

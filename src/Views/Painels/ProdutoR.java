@@ -4,12 +4,12 @@
  */
 package Views.Painels;
 
-import Controllers.FornecedorDAOImpl;
+import Controllers.OperadoraDAOImpl;
 import Controllers.ListaDAOImpl;
 import Controllers.ProdutosDAOImpl;
 import Modelos.Categoria;
 import Modelos.Cliente;
-import Modelos.Fornecedor;
+import Modelos.Operadora;
 import Modelos.Produto;
 import java.util.Date;
 import java.util.Iterator;
@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 public class ProdutoR extends javax.swing.JPanel {
     
     private ProdutosDAOImpl gestor;
-    private FornecedorDAOImpl gero;
+    private OperadoraDAOImpl gero;
     private DefaultComboBoxModel model;
     
     private DefaultTableModel modelo;
@@ -33,7 +33,7 @@ public class ProdutoR extends javax.swing.JPanel {
      * Creates new form Venda
      */
     public ProdutoR() {
-        gero = new FornecedorDAOImpl();
+        gero = new OperadoraDAOImpl();
         gestor = new ProdutosDAOImpl();
         initComponents();
         model = new DefaultComboBoxModel();
@@ -52,13 +52,13 @@ public class ProdutoR extends javax.swing.JPanel {
     }
     
      public void combo(){
-         List cat = gero.listarFornecedores();
+         List cat = gero.listarOperadoras();
 
         Iterator it = cat.iterator();
         
         while (it.hasNext()) {
             
-           Fornecedor produto = (Fornecedor) it.next();
+           Operadora produto = (Operadora) it.next();
             String nome = produto.getNome();
 
             model.addElement(nome);
@@ -304,10 +304,10 @@ public class ProdutoR extends javax.swing.JPanel {
             return;
         }
         
-        List cat = gero.listarFornecedores();
+        List cat = gero.listarOperadoras();
         
         if (cat != null && selectedIndex >= 0 && selectedIndex < cat.size()) {
-            Fornecedor prod = (Fornecedor) cat.get(selectedIndex);
+            Operadora prod = (Operadora) cat.get(selectedIndex);
             Produto cliente = new Produto(nome,new Date(),preco,valor,quantidade,prod);
 
             try {
@@ -327,13 +327,13 @@ public class ProdutoR extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
-        List<Fornecedor> cs = gero.listarFornecedores();
+        List<Operadora> cs = gero.listarOperadoras();
         List<Produto> clientes = gestor.listarProdutos();
         int com = combox.getSelectedIndex();
         int selected = tabela.getSelectedRow();
 
         if (selected != -1) {
-            Fornecedor cat = cs.get(com);
+            Operadora cat = cs.get(com);
             String nome = nomeField.getText();
             double preco = Double.parseDouble( prcField.getText());
             double valor = Double.parseDouble(vlrField.getText());

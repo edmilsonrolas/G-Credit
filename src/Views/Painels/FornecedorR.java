@@ -4,9 +4,9 @@
  */
 package Views.Painels;
 
-import Controllers.FornecedorDAOImpl;
+import Controllers.OperadoraDAOImpl;
 import Controllers.ListaDAOImpl;
-import Modelos.Fornecedor;
+import Modelos.Operadora;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FornecedorR extends javax.swing.JPanel {
 
-    private FornecedorDAOImpl gestor;
+    private OperadoraDAOImpl gestor;
 
     private DefaultTableModel modelo;
 
@@ -26,7 +26,7 @@ public class FornecedorR extends javax.swing.JPanel {
      * Creates new form Venda
      */
     public FornecedorR() {
-        gestor = new FornecedorDAOImpl();
+        gestor = new OperadoraDAOImpl();
         initComponents();
         modelo = new DefaultTableModel();
         modelo.addColumn("Id");
@@ -41,12 +41,12 @@ public class FornecedorR extends javax.swing.JPanel {
     public void tabela() {
         modelo.setRowCount(0);
 
-        List fornecedores = gestor.listarFornecedores();
+        List fornecedores = gestor.listarOperadoras();
 
         Iterator it = fornecedores.iterator();
 
         while (it.hasNext()) {
-            Fornecedor forn = (Fornecedor) it.next();
+            Operadora forn = (Operadora) it.next();
 
             Object[] fila = new Object[5];
 
@@ -251,10 +251,10 @@ public class FornecedorR extends javax.swing.JPanel {
         String contato = contField.getText();
         String desc = descField.getText();
 
-        Fornecedor forn = new Fornecedor(nome, contato, desc);
+        Operadora forn = new Operadora(nome, contato, desc);
 
         try {
-            gestor.adicionarFornecedor(forn);
+            gestor.adicionarOperadora(forn);
             JOptionPane.showMessageDialog(null, "Fornecedor Registrado!");
             nomeField.setText("");
             contField.setText("");
@@ -268,7 +268,7 @@ public class FornecedorR extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
-        List<Fornecedor> forns = gestor.listarFornecedores();
+        List<Operadora> forns = gestor.listarOperadoras();
         int selected = tabela.getSelectedRow();
 
         if (selected != -1) {
@@ -281,11 +281,11 @@ public class FornecedorR extends javax.swing.JPanel {
 //            //            String email = JOptionPane.showInputDialog("Editar email do cliente:", modelo.getValueAt(selected, 1));
             if (nome != null && !nome.isEmpty()) {
                 int id = (int) modelo.getValueAt(selected, 0);
-                for (Fornecedor forn : forns) {
+                for (Operadora forn : forns) {
                     if (forn.getId() == id) {
                         forn.setNome(nome);
                         forn.setContacto(cont);    
-                        gestor.atualizarFornecedor(forn);
+                        gestor.atualizarOperadora(forn);
                     }
                 }
                 tabela();
