@@ -47,6 +47,29 @@ public abstract class Person {
     }
 
     /**
+     * Construtor da classe Person.
+     * Cria um novo objeto `Person` com informações básicas da pessoa.
+     * 
+     * @param firstName O primeiro nome da pessoa.
+     * @param lastName O sobrenome da pessoa.
+     * @param phone O número de telefone da pessoa.
+     * @param address O endereço da pessoa.
+     */
+    public Person(String firstName, String lastName, String phone, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.address = address;
+    }
+
+    /**
+     * Construtor vazio da classe Person.
+     * Cria um novo objeto `Person` sem atribuir valores iniciais a nenhum campo.
+     */
+    public Person() {
+    }
+
+    /**
      * Obtém o endereço da pessoa.
      *
      * @return O endereço da pessoa.

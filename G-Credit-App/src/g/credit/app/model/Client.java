@@ -13,7 +13,7 @@ package g.credit.app.model;
  * @author rolas
  */
 public class Client extends Person {
-    private String customerID;            // O ID de cliente do cliente.
+    private long customerID;            // O ID de cliente do cliente.
     private MembershipStatus membershipStatus; // O estado de associação do cliente.
     private int loyaltyPoints;           // Pontos de fidelidade do cliente.
     
@@ -21,8 +21,8 @@ public class Client extends Person {
      * Enumeração que representa os estados de associação possíveis de um cliente.
      */
     public enum MembershipStatus{
-        Standard, // Estado de associação padrão.
-        Premium   // Estado de associação premium.
+        NORMAL, // Estado de associação padrão.
+        PREMIUM   // Estado de associação premium.
     }
 
     /**
@@ -34,16 +34,49 @@ public class Client extends Person {
      * @param email             O endereço de email do cliente.
      * @param phone             O número de telefone do cliente.
      * @param address           O endereço do cliente.
-     * @param customerID        O ID de cliente do cliente.
      * @param membershipStatus  O estado de associação do cliente (Standard ou Premium).
      * @param loyaltyPoints     Os pontos de fidelidade do cliente.
      */
-    public Client(String firstName, String lastName, String dateOfBirth, String email, String phone, String address,
-                  String customerID, MembershipStatus membershipStatus, int loyaltyPoints) {
+    public Client(String firstName, String lastName, String dateOfBirth, String email, String phone, String address, int loyaltyPoints) {
         super(firstName, lastName, dateOfBirth, email, phone, address);
-        this.customerID = customerID;
-        this.membershipStatus = membershipStatus;
         this.loyaltyPoints = loyaltyPoints;
+        this.membershipStatus = MembershipStatus.NORMAL;
+    }
+
+    /**
+     * Construtor da classe Client.
+     * Cria um novo objeto `Client` com informações básicas do cliente.
+     * 
+     * @param firstName O primeiro nome do cliente.
+     * @param lastName O sobrenome do cliente.
+     * @param dateOfBirth A data de nascimento do cliente no formato "yyyy-MM-dd".
+     * @param email O endereço de email do cliente.
+     * @param phone O número de telefone do cliente.
+     * @param address O endereço do cliente.
+     */    
+    public Client(String firstName, String lastName, String dateOfBirth, String email, String phone, String address) {
+        super(firstName, lastName, dateOfBirth, email, phone, address);
+    }
+
+    /**
+     * Construtor da classe Client.
+     * Cria um novo objeto `Client` com informações básicas do cliente.
+     * 
+     * @param firstName O primeiro nome do cliente.
+     * @param lastName O sobrenome do cliente.
+     * @param phone O número de telefone do cliente.
+     * @param address O endereço do cliente.
+     */    
+    public Client(String firstName, String lastName, String phone, String address) {
+        super(firstName, lastName, phone, address);
+        membershipStatus = MembershipStatus.NORMAL;
+    }
+
+    /**
+     * Construtor vazio da classe Client.
+     * Cria um novo objeto `Client` sem atribuir valores iniciais a nenhum campo.
+     */    
+    public Client() {
     }
 
     /**
@@ -51,7 +84,7 @@ public class Client extends Person {
      *
      * @return O ID de cliente.
      */
-    public String getCustomerID() {
+    public long getCustomerID() {
         return customerID;
     }
 
@@ -60,7 +93,7 @@ public class Client extends Person {
      *
      * @param customerID O ID de cliente.
      */
-    public void setCustomerID(String customerID) {
+    public void setCustomerID(long customerID) {
         this.customerID = customerID;
     }
 
@@ -108,7 +141,7 @@ public class Client extends Person {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Client{");
+        sb.append("\nClient{");
         sb.append("customerID=").append(customerID);
         sb.append(", firstName=").append(getFirstName());
         sb.append(", lastName=").append(getLastName());

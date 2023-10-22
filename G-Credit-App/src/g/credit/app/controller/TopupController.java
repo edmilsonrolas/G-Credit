@@ -33,7 +33,7 @@ public class TopupController {
         try {
             topupDAO = new TopupDAO();
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao inicializar o controlador.", e);
+            throw new RuntimeException("Erro ao criar TopupController.", e);
         }
     }
 

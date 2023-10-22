@@ -125,6 +125,7 @@ public class TopupDAO {
 
             while (resultSet.next()) {
                 topups.add(mapResultSetToTopup(resultSet));
+//                topups.add(EntityMapper.mapResultSetToEntity(resultSet, Topup.class));
             }
         } catch (SQLException e) {
             throw new SQLException("Erro ao obter todas as recargas telefônicas.", e);
@@ -164,7 +165,6 @@ public class TopupDAO {
         try {
             SQLiteDBConnection.closeConnection();
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }

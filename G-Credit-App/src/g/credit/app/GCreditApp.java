@@ -5,7 +5,6 @@
 package g.credit.app;
 
 import g.credit.app.controller.TopupController;
-import g.credit.app.dao.SQLiteDBConnection;
 import g.credit.app.model.Topup;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -20,12 +19,11 @@ public class GCreditApp {
 
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
      */
-    public static void main(String[] args) {
-        GCreditApp app = new GCreditApp();
-        app.showMenu();
-//        Topup topup = new Topup(10, Topup.Operator.Vodacom, 10);
-//        System.out.println(topup.toString());
+    public static void main(String[] args) throws SQLException {
+//        GCreditApp app = new GCreditApp();
+//        app.showMenu();
     }
     
     public GCreditApp(){
@@ -33,19 +31,20 @@ public class GCreditApp {
         topupController = new TopupController();
     }
     
-    public void showMenu() {
+    public void showMenu() throws SQLException {
         int choice;
         do {
             System.out.println("Menu:");
             System.out.println("1. Adicionar Recarga");
             System.out.println("2. Listar Todas os Recargas");
             System.out.println("3. Buscar Recarga por ID");
-            System.out.println("4. Atualizar Recarga");
-            System.out.println("5. Excluir Recarga");
+            System.out.println("4. Entrada de Recargas");
+            System.out.println("5. Saida de Recargas");
+            System.out.println("6. Excluir Recarga");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             choice = scanner.nextInt();
-            scanner.nextLine(); // Consumir a quebra de linha
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -58,9 +57,11 @@ public class GCreditApp {
                     getTopupById();
                     break;
                 case 4:
-                    updateTopup();
+                    increaseTopupStockQuantity();
                     break;
                 case 5:
+                    decreaseTopupStockQuantity();
+                case 6:
                     deleteTopup();
                     break;
                 case 0:
@@ -71,6 +72,8 @@ public class GCreditApp {
                     break;
             }
         } while (choice != 0);
+        
+        topupController.closeConnection();
     }
     
     void insertTopup(){
@@ -89,7 +92,9 @@ public class GCreditApp {
     }
     
     void getTopupById(){
-        System.out.println(topupController.getTopupById("TM50"));
+        System.out.print("id: ");
+        String id = scanner.next();
+        System.out.println(topupController.getTopupById(id));
     }
     
     void updateTopup(){
@@ -102,6 +107,24 @@ public class GCreditApp {
     }
     
     void deleteTopup(){
-        
+        System.out.println("id: ");
+        String id = scanner.next();
+        topupController.deleteTopup(id);
+    }
+
+    private void increaseTopupStockQuantity() throws SQLException {
+        System.out.println("id: ");
+        String id = scanner.next();
+        System.out.print("Quantidade: ");
+        int qtt = scanner.nextInt();
+        topupController.increaseTopupStockQuantity(id, qtt);
+    }
+
+    private void decreaseTopupStockQuantity() throws SQLException {
+        System.out.println("id: ");
+        String id = scanner.next();
+        System.out.print("Quantidade: ");
+        int qtt = scanner.nextInt();
+        topupController.decreaseTopupStockQuantity(id, qtt);
     }
 }
