@@ -157,10 +157,10 @@ public abstract class Person {
      */
     public void setEmail(String email) {
         // Verifica se o email está em um formato válido usando uma expressão regular
-        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
-        if (!email.matches(emailRegex)) {
-            throw new IllegalArgumentException("Endereço de email inválido.");
-        }
+//        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+//        if (!email.matches(emailRegex)) {
+//            throw new IllegalArgumentException("Endereço de email inválido.");
+//        }
         this.email = email;
     }
 

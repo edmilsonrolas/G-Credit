@@ -67,7 +67,7 @@ public class UserController {
      * @param userID O ID de utilizador do utilizador a ser excluído.
      * @throws RuntimeException Se ocorrer um erro durante a exclusão.
      */
-    public void deleteUser(String userID) {
+    public void deleteUser(long userID) {
         try {
             userDAO.deleteUser(userID);
         } catch (SQLException e) {
@@ -82,7 +82,7 @@ public class UserController {
      * @return O utilizador com o ID de utilizador especificado.
      * @throws RuntimeException Se ocorrer um erro durante a consulta.
      */
-    public User getUserById(String userID) {
+    public User getUserById(long userID) {
         try {
             return userDAO.getUserById(userID);
         } catch (SQLException e) {

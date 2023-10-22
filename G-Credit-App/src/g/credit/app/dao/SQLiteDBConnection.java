@@ -33,9 +33,10 @@ public class SQLiteDBConnection {
                 Class.forName("org.sqlite.JDBC");
                 connection = DriverManager.getConnection("jdbc:sqlite:G-CreditDataBase.db");
                 
-                // Chama o método para criar a tabela, se ela ainda não existir
+                // Chama os métodos para criar as tabelas, se elas ainda não existirem
                 createTopupsTable();
                 createClientsTable();
+                createUsersTable();
             } catch (ClassNotFoundException e) {
                 throw new SQLException("Driver JDBC SQLite não encontrado.", e);
             } catch (SQLException e) {

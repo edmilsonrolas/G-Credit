@@ -13,7 +13,7 @@ package g.credit.app.model;
  * @author rolas
  */
 public class User extends Person {
-    private String userID;          // O ID de utilizador do utilizador.
+    private long userID;          // O ID de utilizador do utilizador.
     private Position position;       // A posição do utilizador.
     private double salary;          // O salário do utilizador.
     
@@ -21,8 +21,8 @@ public class User extends Person {
      * Enumeração que representa as posições possíveis de um utilizador.
      */
     public enum Position {
-        superUser,                  // Utilizador com privilégios de superutilizador.
-        Attendant                   // Atendente ou utilizador comum.
+        MANAGER,                  // Utilizador com privilégios de superutilizador.
+        ATTENDANT                   // Atendente ou utilizador comum.
     }
 
     /**
@@ -34,20 +34,21 @@ public class User extends Person {
      * @param email        O endereço de email do utilizador.
      * @param phone        O número de telefone do utilizador.
      * @param address      O endereço do utilizador.
-     * @param userID       O ID de utilizador do utilizador.
      * @param position     A posição do utilizador (superUser ou Attendant).
      * @param salary       O salário do utilizador.
      */
     public User(String firstName, String lastName, String dateOfBirth, String email, String phone, String address,
-                     String userID, Position position, double salary) {
+                     Position position, double salary) {
         super(firstName, lastName, dateOfBirth, email, phone, address);
         
         if (salary < 0) {
             throw new IllegalArgumentException("Salário não pode ser negativo.");
         }
-        this.userID = userID;
         this.position = position;
         this.salary = salary;
+    }
+
+    public User() {
     }
 
     /**
@@ -55,7 +56,7 @@ public class User extends Person {
      *
      * @return O ID de utilizador.
      */
-    public String getUserID() {
+    public long getUserID() {
         return userID;
     }
 
@@ -64,7 +65,7 @@ public class User extends Person {
      *
      * @param userID O ID de utilizador.
      */
-    public void setUserID(String userID) {
+    public void setUserID(long userID) {
         this.userID = userID;
     }
 
@@ -84,7 +85,7 @@ public class User extends Person {
      */
     public void setPosition(Position position) {
         // Verifica se a posição é uma das enumerações válidas
-        if (position != Position.superUser && position != Position.Attendant) {
+        if (position != Position.MANAGER && position != Position.ATTENDANT) {
             throw new IllegalArgumentException("Posição inválida.");
         }
         this.position = position;
@@ -116,7 +117,7 @@ public class User extends Person {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("User{");
+        sb.append("\nUser{");
         sb.append("userID=").append(userID);
         sb.append(", firstName=").append(getFirstName());
         sb.append(", lastName=").append(getLastName());

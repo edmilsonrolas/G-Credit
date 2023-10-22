@@ -34,7 +34,6 @@ public class Client extends Person {
      * @param email             O endereço de email do cliente.
      * @param phone             O número de telefone do cliente.
      * @param address           O endereço do cliente.
-     * @param membershipStatus  O estado de associação do cliente (Standard ou Premium).
      * @param loyaltyPoints     Os pontos de fidelidade do cliente.
      */
     public Client(String firstName, String lastName, String dateOfBirth, String email, String phone, String address, int loyaltyPoints) {
