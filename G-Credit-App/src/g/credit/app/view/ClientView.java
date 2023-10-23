@@ -113,7 +113,7 @@ public class ClientView {
     void deleteClient() {
         System.out.print("ID do Cliente a ser excluído: ");
         long id = scanner.nextLong();
-        clientController.deleteUser(id);
+        clientController.deleteClient(id);
     }
 
     public static void main(String[] args) throws SQLException {

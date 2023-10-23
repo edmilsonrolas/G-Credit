@@ -67,7 +67,7 @@ public class ClientController {
      * @param customerID O ID de cliente do cliente a ser excluído.
      * @throws RuntimeException Se ocorrer um erro durante a exclusão.
      */
-    public void deleteUser(long customerID) {
+    public void deleteClient(long customerID) {
         try {
             clientDAO.deleteClient(customerID);
         } catch (SQLException e) {

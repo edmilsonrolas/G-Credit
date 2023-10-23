@@ -4,8 +4,9 @@
  */
 package g.credit.app;
 
-import g.credit.app.controller.TopupController;
-import g.credit.app.model.Topup;
+import g.credit.app.view.ClientView;
+import g.credit.app.view.TopupView;
+import g.credit.app.view.UserView;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -14,117 +15,57 @@ import java.util.Scanner;
  * @author rolas
  */
 public class GCreditApp {
-    private final Scanner scanner;
-    private final TopupController topupController;
 
-    /**
-     * @param args the command line arguments
-     * @throws java.sql.SQLException
-     */
-    public static void main(String[] args) throws SQLException {
-//        GCreditApp app = new GCreditApp();
-//        app.showMenu();
-    }
-    
-    public GCreditApp(){
-        scanner = new Scanner(System.in);
-        topupController = new TopupController();
-    }
-    
-    public void showMenu() throws SQLException {
-        int choice;
-        do {
-            System.out.println("Menu:");
-            System.out.println("1. Adicionar Recarga");
-            System.out.println("2. Listar Todas os Recargas");
-            System.out.println("3. Buscar Recarga por ID");
-            System.out.println("4. Entrada de Recargas");
-            System.out.println("5. Saida de Recargas");
-            System.out.println("6. Excluir Recarga");
-            System.out.println("0. Sair");
-            System.out.print("Escolha uma opção: ");
-            choice = scanner.nextInt();
-            scanner.nextLine();
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-            switch (choice) {
-                case 1:
-                    insertTopup();
-                    break;
-                case 2:
-                    getAllTopups();
-                    break;
-                case 3:
-                    getTopupById();
-                    break;
-                case 4:
-                    increaseTopupStockQuantity();
-                    break;
-                case 5:
-                    decreaseTopupStockQuantity();
-                case 6:
-                    deleteTopup();
-                    break;
-                case 0:
-                    System.out.println("A sair do programa.");
-                    break;
-                default:
-                    System.out.println("Opção inválida. Tenta novamente.");
-                    break;
+        System.out.println("Bem-vindo à sua aplicação de gestão!");
+        try {
+            while (true) {
+                System.out.println("Escolha uma opção:");
+                System.out.println("1. Gerir Recargas");
+                System.out.println("2. Gerir Utilizadores");
+                System.out.println("3. Gerir Clientes");
+                System.out.println("0. Sair");
+
+                int choice = scanner.nextInt();
+                scanner.nextLine();
+
+                switch (choice) {
+                    case 1:
+                        manageTopups();
+                        break;
+                    case 2:
+                        manageUsers();
+                        break;
+                    case 3:
+                        manageClients();
+                        break;
+                    case 0:
+                        System.out.println("A sair da aplicação. Obrigado!");
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println("Opção inválida. Tente novamente.");
+                }
             }
-        } while (choice != 0);
-        
-        topupController.closeConnection();
-    }
-    
-    void insertTopup(){
-        System.out.print("Valor: ");
-        int value = scanner.nextInt();
-        System.out.print("Operadora: ");
-        String operator = scanner.next();
-        System.out.print("Quantidade: ");
-        int qtt = scanner.nextInt();
-        Topup t = new Topup(value, Topup.Operator.valueOf(operator), qtt);
-        topupController.insertTopup(t);
-    }
-    
-    void getAllTopups(){
-        System.out.println(topupController.getAllTopups());
-    }
-    
-    void getTopupById(){
-        System.out.print("id: ");
-        String id = scanner.next();
-        System.out.println(topupController.getTopupById(id));
-    }
-    
-    void updateTopup(){
-        System.out.println("id: ");
-//        String id = 
-//        System.out.print("Quantidade: ");
-//        int qtt = scanner.nextInt();
-//        Topup t = new Topup(value, Topup.Operator.valueOf(operator), qtt);
-//        topupController.updateTopup(t);
-    }
-    
-    void deleteTopup(){
-        System.out.println("id: ");
-        String id = scanner.next();
-        topupController.deleteTopup(id);
+        } catch (SQLException e) {
+            System.err.println("Erro ao ligar à base de dados: " + e.getMessage());
+        }
     }
 
-    private void increaseTopupStockQuantity() throws SQLException {
-        System.out.println("id: ");
-        String id = scanner.next();
-        System.out.print("Quantidade: ");
-        int qtt = scanner.nextInt();
-        topupController.increaseTopupStockQuantity(id, qtt);
+    public static void manageTopups() throws SQLException {
+        TopupView topupView = new TopupView();
+        topupView.showMenu();
     }
 
-    private void decreaseTopupStockQuantity() throws SQLException {
-        System.out.println("id: ");
-        String id = scanner.next();
-        System.out.print("Quantidade: ");
-        int qtt = scanner.nextInt();
-        topupController.decreaseTopupStockQuantity(id, qtt);
+    public static void manageUsers() throws SQLException {
+        UserView userView = new UserView();
+        userView.showMenu();
+    }
+
+    public static void manageClients() throws SQLException {
+        ClientView clientView = new ClientView();
+        clientView.showMenu();
     }
 }
