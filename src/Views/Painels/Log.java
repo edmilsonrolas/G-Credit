@@ -1,51 +1,22 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Views;
+package Views.Painels;
 
-import Views.Painels.CategoriaR;
-import Views.Painels.ClienteR;
-import Views.Painels.FornecedorR;
-import Views.Painels.ListaC;
-import Views.Painels.ProdutoR;
-import Views.Painels.Venda;
-import Views.models.DrawerItem;
-import com.formdev.flatlaf.FlatDarculaLaf;
-import com.formdev.flatlaf.FlatIntelliJLaf;
-import com.formdev.flatlaf.FlatLaf;
-import com.formdev.flatlaf.FlatLightLaf;
-import com.formdev.flatlaf.fonts.roboto_mono.FlatRobotoMonoFont;
-import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
-import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
-import com.formdev.flatlaf.intellijthemes.FlatMonokaiProIJTheme;
-import com.formdev.flatlaf.intellijthemes.FlatNordIJTheme;
-import com.formdev.flatlaf.intellijthemes.FlatVuesionIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDarkerIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialPalenightIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
-import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import Views.FreshUi;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import javaswingdev.drawer.Drawer;
 import javaswingdev.drawer.DrawerController;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 /**
  *
  * @author Matavele's
  */
-public class Home extends javax.swing.JFrame {
-
+public class Log extends javax.swing.JPanel {
+    
     private Venda painelVenda;
     private FornecedorR painelForn;
     private ProdutoR painelProd;
@@ -53,25 +24,24 @@ public class Home extends javax.swing.JFrame {
     private CategoriaR painelCateg;
     private ClienteR painelCliente;
     private DrawerController dr;
+    private JFrame frame;
 
     private boolean a = false;
-
     /**
-     * Creates new form Home
+     * Creates new form Log
      */
-    public Home() {
+    public Log(JFrame frame) {
         painelVenda = new Venda();
         painelForn = new FornecedorR();
         painelProd = new ProdutoR();
         painelLista = new ListaC();
         painelCateg = new CategoriaR();
         painelCliente = new ClienteR();
+        this.frame = frame;
 //        UIManager.put("Button.arc", 999);
         initComponents();
-        setTitle("Gwevissa");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(new Dimension(800, 600));
-        setLocationRelativeTo(null);
+        
+        
         jButton1.putClientProperty("JButton.buttonType", "help");
         jButton11.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton10.putClientProperty("JButton.buttonType", "toolBarButton");
@@ -86,8 +56,10 @@ public class Home extends javax.swing.JFrame {
         jButton24.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton25.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton2.putClientProperty("JButton.buttonType", "toolBarButton");
+        jButton3.putClientProperty("JButton.buttonType", "toolBarButton");
+        jButton4.putClientProperty("JButton.buttonType", "toolBarButton");
 
-        dr = Drawer.newDrawer(this).header(jPanel5)
+        dr = Drawer.newDrawer(frame).header(jPanel5)
                 .drawerBackground(new Color(40, 44, 52))
                 .enableScroll(true)
                 .space(5)
@@ -98,10 +70,11 @@ public class Home extends javax.swing.JFrame {
                 .addChild(jButton23)
                 .addChild(jButton24)
                 .addChild(jButton25)
-                .addChild(jPanel10)
                 .addFooter(jPanel6)
                 .build();
 
+        jPopupMenu1.add(jButton3);
+        jPopupMenu1.add(jButton4);
         jPopupMenu1.add(jButton2);
 
     }
@@ -116,17 +89,9 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        perf2 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        perf1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jPanel15 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
-        jPanel16 = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -166,32 +131,6 @@ public class Home extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
 
-        perf2.setPreferredSize(new java.awt.Dimension(140, 25));
-        perf2.setLayout(new java.awt.BorderLayout());
-
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Terminar Sessão");
-        perf2.add(jLabel7, java.awt.BorderLayout.CENTER);
-
-        jLabel8.setText("t");
-        perf2.add(jLabel8, java.awt.BorderLayout.LINE_START);
-
-        perf1.setPreferredSize(new java.awt.Dimension(140, 25));
-        perf1.setLayout(new java.awt.BorderLayout());
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Configurações");
-        perf1.add(jLabel5, java.awt.BorderLayout.CENTER);
-
-        jLabel6.setText("c");
-        perf1.add(jLabel6, java.awt.BorderLayout.LINE_START);
-
-        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel15.setLayout(new java.awt.BorderLayout());
-
-        jPanel10.setLayout(new java.awt.BorderLayout());
-        jPanel10.add(jPanel16, java.awt.BorderLayout.CENTER);
-
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/icons8-logout-25.png"))); // NOI18N
         jButton2.setText("Sair");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -200,8 +139,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 800));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/icons8-male-user-25.png"))); // NOI18N
+        jButton3.setText("Perfil");
+
+        jButton4.setText("Configurações");
+        jButton4.setToolTipText("");
+
+        setLayout(new java.awt.BorderLayout());
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
@@ -398,29 +342,23 @@ public class Home extends javax.swing.JFrame {
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.WEST);
         jPanel2.add(jPanel9, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
-
-        pack();
+        add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
-
-    }//GEN-LAST:event_jPanel12MouseClicked
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
 
         //create void for methode hide and show panel menu
-//        if (a == true) {
-//            hideshow(jPanel14, a);
-//            SwingUtilities.updateComponentTreeUI(this);
-//            //create methode change image
-//
-//            a = false;
-//        } else {
-//            hideshow(jPanel14, a);
-//            SwingUtilities.updateComponentTreeUI(this);
-//            a = true;
-//        }
+        //        if (a == true) {
+            //            hideshow(jPanel14, a);
+            //            SwingUtilities.updateComponentTreeUI(this);
+            //            //create methode change image
+            //
+            //            a = false;
+            //        } else {
+            //            hideshow(jPanel14, a);
+            //            SwingUtilities.updateComponentTreeUI(this);
+            //            a = true;
+            //        }
         if (dr.isShow()) {
             dr.hide();
         } else {
@@ -436,10 +374,14 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
 
+    private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
+
+    }//GEN-LAST:event_jPanel12MouseClicked
+
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
 
         jPopupMenu1.show(jButton7, WIDTH, 25);
-        
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
@@ -492,54 +434,14 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        FreshUi fresh = new FreshUi();
+        FreshUi fresh = (FreshUi) frame;
+        fresh.setPanel(fresh.getLogin());
         fresh.setVisible(true);
         revalidate();
         repaint();
-        
+
     }//GEN-LAST:event_jButton2MouseClicked
 
-    public JPanel getjPanel2() {
-        return jPanel2;
-    }
-    public void hideshow(JPanel menushowhide, boolean dashboard) {
-        if (dashboard == true) {
-            menushowhide.setPreferredSize(new Dimension(0, menushowhide.getHeight()));
-
-        } else {
-            menushowhide.setPreferredSize(new Dimension(250, menushowhide.getHeight()));
-
-        }
-
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        FlatRobotoMonoFont.install(); //</editor-fold>
-        FlatLaf.registerCustomDefaultsSource("Style");
-        UIManager.put("defaultFont", new Font(FlatRobotoMonoFont.FAMILY, Font.PLAIN, 13));
-        FlatAtomOneDarkIJTheme.setup();
-//                    UIManager.put("Button.arc", 998);
-
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Home().setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -554,6 +456,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
@@ -566,19 +470,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -590,7 +486,5 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel perf1;
-    private javax.swing.JPanel perf2;
     // End of variables declaration//GEN-END:variables
 }

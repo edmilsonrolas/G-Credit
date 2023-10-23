@@ -28,6 +28,9 @@ public class FornecedorR extends javax.swing.JPanel {
     public FornecedorR() {
         gestor = new OperadoraDAOImpl();
         initComponents();
+        add.putClientProperty("JButton.buttonType", "roundRect");
+        edit.putClientProperty("JButton.buttonType", "roundRect");
+        rmv.putClientProperty("JButton.buttonType", "roundRect");
         modelo = new DefaultTableModel();
         modelo.addColumn("Id");
         modelo.addColumn("Nome");
@@ -229,7 +232,7 @@ public class FornecedorR extends javax.swing.JPanel {
 
         try {
             gestor.adicionarOperadora(forn);
-            JOptionPane.showMessageDialog(null, "Fornecedor Registrado!");
+            JOptionPane.showMessageDialog(null, "Operadora Registrada!");
             nomeField.setText("");
             contField.setText("");
             descField.setText("");
@@ -266,7 +269,7 @@ public class FornecedorR extends javax.swing.JPanel {
 
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione um Fornecedor para editar.");
+            JOptionPane.showMessageDialog(null, "Selecione uma Operadora para editar.");
         }
     }//GEN-LAST:event_editActionPerformed
 

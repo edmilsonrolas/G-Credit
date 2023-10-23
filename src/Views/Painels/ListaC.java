@@ -40,6 +40,9 @@ public class ListaC extends javax.swing.JPanel {
         gestor1 = new ProdutosDAOImpl();
         gestor2 = new ClienteDAOImpl();
         initComponents();
+        add.putClientProperty("JButton.buttonType", "roundRect");
+        edit.putClientProperty("JButton.buttonType", "roundRect");
+        Remover.putClientProperty("JButton.buttonType", "roundRect");
         model = new DefaultComboBoxModel();
         model2 = new DefaultComboBoxModel();
         modelo = new DefaultTableModel();
@@ -148,7 +151,7 @@ public class ListaC extends javax.swing.JPanel {
         jPanel4.setPreferredSize(new java.awt.Dimension(450, 450));
         jPanel4.setLayout(new java.awt.GridLayout(2, 1));
 
-        jPanel5.setLayout(new java.awt.GridLayout());
+        jPanel5.setLayout(new java.awt.GridLayout(1, 0));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -169,7 +172,7 @@ public class ListaC extends javax.swing.JPanel {
         });
         jPanel2.add(combox);
 
-        jLabel1.setText("Produto");
+        jLabel1.setText("Recarga");
         jPanel2.add(jLabel1);
 
         combox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -279,7 +282,7 @@ public class ListaC extends javax.swing.JPanel {
         }
 
         if (selectedIndex1 == -1) {
-            JOptionPane.showMessageDialog(null, "Selecione um Produto.");
+            JOptionPane.showMessageDialog(null, "Selecione uma Recarga.");
             return;
         }
 
@@ -300,7 +303,7 @@ public class ListaC extends javax.swing.JPanel {
                         gestor1.atualizarProdutos(prod);
                         try {
                             gestor.adicionarLista(list);
-                            JOptionPane.showMessageDialog(null, "Produto adicionado a lista de compras!");
+                            JOptionPane.showMessageDialog(null, "Recarga adicionada a lista de compras!");
                             qtdField.setText("");
                             tabela(cliente);
                         } catch (Exception e) {
@@ -312,7 +315,7 @@ public class ListaC extends javax.swing.JPanel {
 
 
         } else {
-            JOptionPane.showMessageDialog(null, "Produto/Cliente selecionado inválido.");
+            JOptionPane.showMessageDialog(null, "Recarga/Cliente selecionado inválido.");
         }
     }//GEN-LAST:event_addActionPerformed
 
@@ -353,7 +356,7 @@ public class ListaC extends javax.swing.JPanel {
 
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione um Produto para atualizar.");
+            JOptionPane.showMessageDialog(null, "Selecione uma Recarga para atualizar.");
         }
     }//GEN-LAST:event_editActionPerformed
 
@@ -391,7 +394,7 @@ public class ListaC extends javax.swing.JPanel {
 
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione um Produto para Eliminar.");
+            JOptionPane.showMessageDialog(null, "Selecione uma Recarga para Eliminar.");
         }
     }//GEN-LAST:event_RemoverActionPerformed
 

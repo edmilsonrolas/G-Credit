@@ -28,6 +28,9 @@ public class CategoriaR extends javax.swing.JPanel {
     public CategoriaR() {
         gestor = new CategoriaDAOImpl();
         initComponents();
+        add.putClientProperty("JButton.buttonType", "roundRect");
+        edit.putClientProperty("JButton.buttonType", "roundRect");
+        rmv.putClientProperty("JButton.buttonType", "roundRect");
         modelo = new DefaultTableModel();
         modelo.addColumn("Id");
         modelo.addColumn("Nome");

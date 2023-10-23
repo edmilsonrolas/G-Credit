@@ -14,11 +14,10 @@
         <group>
             <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Painels/Logino.java</file>
             <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Home.java</file>
-            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Painels/FornecedorR.java</file>
-            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Painels/ProdutoR.java</file>
-            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Painels/ListaC.java</file>
-            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Login.java</file>
+            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Painels/ClienteR.java</file>
+            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Painels/Log.java</file>
             <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/FreshUi.java</file>
+            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/models/DrawerItem.java</file>
         </group>
     </open-files>
 </project-private>

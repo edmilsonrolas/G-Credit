@@ -36,6 +36,10 @@ public class Venda extends javax.swing.JPanel {
         gestor1 = new ClienteDAOImpl();
         gestor2 = new VendaDAOImpl();
         initComponents();
+        vndr.putClientProperty("JButton.buttonType", "roundRect");
+        edit.putClientProperty("JButton.buttonType", "roundRect");
+        rmv.putClientProperty("JButton.buttonType", "roundRect");
+        cncl.putClientProperty("JButton.buttonType", "roundRect");
         modelo = new DefaultTableModel();
         model = new DefaultComboBoxModel();
         
@@ -129,10 +133,10 @@ public class Venda extends javax.swing.JPanel {
         jTextPane1 = new javax.swing.JTextPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        vndr = new javax.swing.JButton();
+        edit = new javax.swing.JButton();
+        cncl = new javax.swing.JButton();
+        rmv = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
@@ -210,22 +214,27 @@ public class Venda extends javax.swing.JPanel {
 
         jPanel3.setLayout(new java.awt.GridLayout(1, 3));
 
-        jButton1.setText("Vender");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        vndr.setText("Vender");
+        vndr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                vndrActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1);
+        jPanel3.add(vndr);
 
-        jButton4.setText("Atualizar");
-        jPanel3.add(jButton4);
+        edit.setText("Atualizar");
+        jPanel3.add(edit);
 
-        jButton2.setText("Cancelar");
-        jPanel3.add(jButton2);
+        cncl.setText("Cancelar");
+        cncl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cnclActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cncl);
 
-        jButton3.setText("Eliminar");
-        jPanel3.add(jButton3);
+        rmv.setText("Eliminar");
+        jPanel3.add(rmv);
 
         jPanel2.add(jPanel3);
 
@@ -294,17 +303,19 @@ public class Venda extends javax.swing.JPanel {
         tPane.setText(""+total);
     }//GEN-LAST:event_comboxActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void vndrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vndrActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_vndrActionPerformed
+
+    private void cnclActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cnclActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cnclActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cncl;
     private javax.swing.JComboBox<String> combox;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton edit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -327,7 +338,9 @@ public class Venda extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JButton rmv;
     private javax.swing.JTextPane tPane;
     private javax.swing.JTable tabela;
+    private javax.swing.JButton vndr;
     // End of variables declaration//GEN-END:variables
 }

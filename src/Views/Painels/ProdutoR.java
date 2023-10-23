@@ -36,6 +36,9 @@ public class ProdutoR extends javax.swing.JPanel {
         gero = new OperadoraDAOImpl();
         gestor = new ProdutosDAOImpl();
         initComponents();
+        add.putClientProperty("JButton.buttonType", "roundRect");
+        edit.putClientProperty("JButton.buttonType", "roundRect");
+        rmv.putClientProperty("JButton.buttonType", "roundRect");
         model = new DefaultComboBoxModel();
         modelo = new DefaultTableModel();
         modelo.addColumn("Id");
@@ -139,7 +142,7 @@ public class ProdutoR extends javax.swing.JPanel {
         jPanel4.setPreferredSize(new java.awt.Dimension(450, 450));
         jPanel4.setLayout(new java.awt.GridLayout(2, 0));
 
-        jPanel5.setLayout(new java.awt.GridLayout());
+        jPanel5.setLayout(new java.awt.GridLayout(1, 0));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -149,7 +152,7 @@ public class ProdutoR extends javax.swing.JPanel {
 
         jPanel2.setLayout(new java.awt.GridLayout(11, 0));
 
-        jLabel2.setText("Produto");
+        jLabel2.setText("Plano de Recarga");
         jPanel2.add(jLabel2);
         jPanel2.add(nomeField);
 
@@ -177,7 +180,7 @@ public class ProdutoR extends javax.swing.JPanel {
         });
         jPanel2.add(qtdField);
 
-        jLabel11.setText("Fornecedor");
+        jLabel11.setText("Operadora");
         jPanel2.add(jLabel11);
 
         combox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));

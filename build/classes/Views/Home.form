@@ -102,6 +102,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Icones/icons8-logout-25.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Sair"/>
       </Properties>
       <Events>
@@ -372,6 +375,9 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/Icones/icons8-customer-40.png"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="Clientes"/>
                             <Property name="horizontalAlignment" type="int" value="2"/>
                           </Properties>
@@ -383,6 +389,9 @@
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/Icones/icons8-product-40.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Categoria"/>
                             <Property name="horizontalAlignment" type="int" value="2"/>
@@ -407,6 +416,9 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/Icones/icons8-sell-40.png"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="Venda"/>
                             <Property name="horizontalAlignment" type="int" value="2"/>
                           </Properties>
@@ -419,7 +431,10 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Produtos"/>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/Icones/icons8-qr-code-40.png"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Recargas"/>
                             <Property name="hideActionText" type="boolean" value="true"/>
                             <Property name="horizontalAlignment" type="int" value="2"/>
                           </Properties>
@@ -432,7 +447,10 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Fornecedores"/>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/Icones/icons8-supplier-40.png"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Operadoras"/>
                             <Property name="horizontalAlignment" type="int" value="2"/>
                           </Properties>
                           <Events>
@@ -443,6 +461,9 @@
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/Icones/icons8-product-40.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Lista"/>
                             <Property name="horizontalAlignment" type="int" value="2"/>
