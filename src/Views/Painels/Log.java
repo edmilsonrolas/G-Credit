@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import javaswingdev.drawer.Drawer;
 import javaswingdev.drawer.DrawerController;
 import javax.swing.JFrame;
+import raven.toast.Notifications;
 
 /**
  *
@@ -25,6 +26,7 @@ public class Log extends javax.swing.JPanel {
     private ClienteR painelCliente;
     private DrawerController dr;
     private JFrame frame;
+    private Notifications note;
 
     private boolean a = false;
     /**
@@ -73,9 +75,8 @@ public class Log extends javax.swing.JPanel {
                 .addFooter(jPanel6)
                 .build();
 
-        jPopupMenu1.add(jButton3);
-        jPopupMenu1.add(jButton4);
-        jPopupMenu1.add(jButton2);
+        jPopupMenu1.add(jPanel10);
+        
 
     }
 
@@ -89,6 +90,7 @@ public class Log extends javax.swing.JPanel {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPanel10 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -130,20 +132,30 @@ public class Log extends javax.swing.JPanel {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+
+        jPanel10.setLayout(new java.awt.GridLayout(3, 0));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/icons8-logout-25.png"))); // NOI18N
         jButton2.setText("Sair");
+        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
             }
         });
+        jPanel10.add(jButton2);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/icons8-male-user-25.png"))); // NOI18N
         jButton3.setText("Perfil");
+        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel10.add(jButton3);
 
+        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Matavele's\\Downloads\\icons8-config-25.png")); // NOI18N
         jButton4.setText("Configurações");
         jButton4.setToolTipText("");
+        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel10.add(jButton4);
 
         setLayout(new java.awt.BorderLayout());
 
@@ -208,7 +220,7 @@ public class Log extends javax.swing.JPanel {
         jPanel3.setLayout(new java.awt.GridLayout(1, 2));
 
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Terminar Sessão");
+        jButton7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Matavele's\\Downloads\\icons8-tools-25.png")); // NOI18N
         jButton7.setOpaque(true);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -340,6 +352,12 @@ public class Log extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jPanel14);
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.WEST);
+
+        jPanel9.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Matavele's\\Downloads\\Abstract-Wallpaper-HD-For-Desktop.jpg")); // NOI18N
+        jPanel9.add(jLabel1, java.awt.BorderLayout.CENTER);
+
         jPanel2.add(jPanel9, java.awt.BorderLayout.CENTER);
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -461,6 +479,7 @@ public class Log extends javax.swing.JPanel {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -472,6 +491,7 @@ public class Log extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;

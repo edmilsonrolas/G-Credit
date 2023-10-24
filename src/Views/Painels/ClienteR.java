@@ -9,8 +9,13 @@ import Controllers.ClienteDAOImpl;
 import Controllers.ListaDAOImpl;
 import Modelos.Categoria;
 import Modelos.Cliente;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +29,7 @@ public class ClienteR extends javax.swing.JPanel {
     private ClienteDAOImpl gestor;
     private CategoriaDAOImpl gero;
     private DefaultComboBoxModel model;
+    private BufferedImage image;
     
     private DefaultTableModel modelo;
     /**
@@ -33,6 +39,12 @@ public class ClienteR extends javax.swing.JPanel {
         gero = new CategoriaDAOImpl();
         gestor = new ClienteDAOImpl();
         initComponents();
+        try {
+            // Carregue a imagem desejada (substitua o caminho pelo caminho do seu arquivo de imagem)
+            image = ImageIO.read(new File("src//Icones//Abstract-Wallpaper-HD-For-Desktop.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         registrar.putClientProperty("JButton.buttonType", "roundRect");
         alterar.putClientProperty("JButton.buttonType", "roundRect");
         eliminar.putClientProperty("JButton.buttonType", "roundRect");
@@ -46,6 +58,18 @@ public class ClienteR extends javax.swing.JPanel {
         modelo.addColumn("Contacto");
         tabela();
         combo();
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (image != null) {
+            g.drawImage(image, 0, 0, this);
+            System.out.println("debugging");
+        }else{
+           JOptionPane.showInternalMessageDialog(null, "eeee");
+        }
+
     }
     
     public void tabela(){
@@ -127,14 +151,13 @@ public class ClienteR extends javax.swing.JPanel {
         tabela = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(500, 500));
-        setLayout(new java.awt.BorderLayout());
 
         jPanel7.setPreferredSize(new java.awt.Dimension(450, 450));
         jPanel7.setLayout(new java.awt.GridLayout(2, 0));
 
         jPanel11.setLayout(new java.awt.BorderLayout());
 
-        jPanel9.setLayout(new java.awt.GridLayout());
+        jPanel9.setLayout(new java.awt.GridLayout(1, 0));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -251,7 +274,7 @@ public class ClienteR extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(jPanel7);
 
-        add(jScrollPane2, java.awt.BorderLayout.PAGE_START);
+        add(jScrollPane2);
     }// </editor-fold>//GEN-END:initComponents
 
     private void contFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contFieldActionPerformed

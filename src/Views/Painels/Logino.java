@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
+import raven.toast.Notifications;
 
 /**
  *
@@ -34,6 +35,7 @@ public class Logino extends JPanel {
     private final JCheckBox lembrete;
     private final JButton login;
     private final JFrame frame;
+    private Notifications notes;
 
     private Component criarTabela() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
@@ -97,7 +99,8 @@ public class Logino extends JPanel {
                     repaint();
                     revalidate();
                 } else {
-                    JOptionPane.showMessageDialog(null, "credenciais invalidas, tente novamente!");
+                    
+                    notes.show(Notifications.Type.INFO, "Crede");
                 }
             }
         });

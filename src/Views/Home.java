@@ -165,6 +165,7 @@ public class Home extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         perf2.setPreferredSize(new java.awt.Dimension(140, 25));
         perf2.setLayout(new java.awt.BorderLayout());
@@ -396,6 +397,12 @@ public class Home extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jPanel14);
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.WEST);
+
+        jPanel9.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Matavele's\\Downloads\\Abstract-Wallpaper-HD-For-Desktop.jpg")); // NOI18N
+        jPanel9.add(jLabel1, java.awt.BorderLayout.CENTER);
+
         jPanel2.add(jPanel9, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -557,6 +564,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
