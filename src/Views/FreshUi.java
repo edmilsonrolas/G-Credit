@@ -53,6 +53,7 @@ public class FreshUi extends JFrame {
     }
 
     private void init(JPanel panel) {
+        
         dispose();
         setTitle("Gwevissa");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

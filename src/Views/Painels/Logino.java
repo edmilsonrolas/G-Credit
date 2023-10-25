@@ -11,8 +11,13 @@ import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -36,6 +41,7 @@ public class Logino extends JPanel {
     private final JButton login;
     private final JFrame frame;
     private Notifications notes;
+    private BufferedImage image;
 
     private Component criarTabela() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
@@ -65,6 +71,12 @@ public class Logino extends JPanel {
     public Logino(JFrame frame) {
 
         init();
+        try {
+            // Carregue a imagem desejada (substitua o caminho pelo caminho do seu arquivo de imagem)
+            image = ImageIO.read(new File("src//Icones//Abstract-Wallpaper-HD-For-Desktop.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         user = new JTextField();
         pass = new JPasswordField();
         lembrete = new JCheckBox("Lembrar senha");
@@ -115,6 +127,17 @@ public class Logino extends JPanel {
         panel.add(login, "gapy 10");
         panel.add(criarTabela(), "gapy 10");
         add(panel);
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (image != null) {
+            g.drawImage(image, 0, 0, this);
+        }else{
+           JOptionPane.showInternalMessageDialog(null, "eeee");
+        }
+
     }
 
     private void init() {

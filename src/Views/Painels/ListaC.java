@@ -11,8 +11,13 @@ import Modelos.Categoria;
 import Modelos.Cliente;
 import Modelos.Lista;
 import Modelos.Produto;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -30,6 +35,8 @@ public class ListaC extends javax.swing.JPanel {
     private DefaultTableModel modelo;
     private DefaultComboBoxModel model;
     private DefaultComboBoxModel model2;
+    
+    private BufferedImage image;
 
     /**
      * Creates new form Venda
@@ -40,6 +47,12 @@ public class ListaC extends javax.swing.JPanel {
         gestor1 = new ProdutosDAOImpl();
         gestor2 = new ClienteDAOImpl();
         initComponents();
+        try {
+            // Carregue a imagem desejada (substitua o caminho pelo caminho do seu arquivo de imagem)
+            image = ImageIO.read(new File("src//Icones//Abstract-Wallpaper-HD-For-Desktop.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         add.putClientProperty("JButton.buttonType", "roundRect");
         edit.putClientProperty("JButton.buttonType", "roundRect");
         Remover.putClientProperty("JButton.buttonType", "roundRect");
@@ -53,6 +66,17 @@ public class ListaC extends javax.swing.JPanel {
 
         combo1();
         combo2();
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (image != null) {
+            g.drawImage(image, 0, 0, this);
+            System.out.println("debugging");
+        }else{
+           JOptionPane.showInternalMessageDialog(null, "eeee");
+        }
     }
 
     public void tabela(Cliente cliente) {
@@ -146,7 +170,8 @@ public class ListaC extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(500, 500));
-        setLayout(new java.awt.BorderLayout());
+
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(500, 500));
 
         jPanel4.setPreferredSize(new java.awt.Dimension(450, 450));
         jPanel4.setLayout(new java.awt.GridLayout(2, 1));
@@ -248,7 +273,7 @@ public class ListaC extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 566, Short.MAX_VALUE))
+                .addGap(0, 86, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,7 +286,7 @@ public class ListaC extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(jPanel4);
 
-        add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        add(jScrollPane2);
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxActionPerformed

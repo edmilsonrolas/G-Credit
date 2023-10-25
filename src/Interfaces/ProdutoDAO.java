@@ -22,7 +22,13 @@ public interface ProdutoDAO {
     void removerProduto(Produto produto);
 
     List listarProdutos();
-
+    
+    double totalVendaProdutos();
+    
+    double totalPrecoProdutos();
+    
+    int totalQtdProdutos();
+    
     void carregar();
 
     void salvar();

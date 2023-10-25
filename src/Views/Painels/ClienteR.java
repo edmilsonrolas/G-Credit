@@ -9,7 +9,10 @@ import Controllers.ClienteDAOImpl;
 import Controllers.ListaDAOImpl;
 import Modelos.Categoria;
 import Modelos.Cliente;
+import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +20,10 @@ import java.util.Iterator;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -39,6 +45,7 @@ public class ClienteR extends javax.swing.JPanel {
         gero = new CategoriaDAOImpl();
         gestor = new ClienteDAOImpl();
         initComponents();
+        
         try {
             // Carregue a imagem desejada (substitua o caminho pelo caminho do seu arquivo de imagem)
             image = ImageIO.read(new File("src//Icones//Abstract-Wallpaper-HD-For-Desktop.jpg"));
@@ -65,10 +72,11 @@ public class ClienteR extends javax.swing.JPanel {
         super.paintComponent(g);
         if (image != null) {
             g.drawImage(image, 0, 0, this);
-            System.out.println("debugging");
-        }else{
-           JOptionPane.showInternalMessageDialog(null, "eeee");
+            
+          
+            
         }
+        
 
     }
     
@@ -123,85 +131,82 @@ public class ClienteR extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel7 = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
+        panelBorder2 = new com.raven.swing.PanelBorder();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        panelBorder3 = new com.raven.swing.PanelBorder();
         jLabel2 = new javax.swing.JLabel();
         nomeField = new javax.swing.JTextField();
-        jPanel8 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         apelidoField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         contField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
+        panelBorder4 = new com.raven.swing.PanelBorder();
         registrar = new javax.swing.JButton();
         alterar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        panelBorder1 = new com.raven.swing.PanelBorder();
         jLabel5 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(500, 500));
+        setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 10));
 
-        jPanel7.setPreferredSize(new java.awt.Dimension(450, 450));
-        jPanel7.setLayout(new java.awt.GridLayout(2, 0));
+        panelBorder2.setLayout(new java.awt.GridLayout(1, 0, 5, 0));
 
-        jPanel11.setLayout(new java.awt.BorderLayout());
+        jLayeredPane1.setLayout(new javax.swing.OverlayLayout(jLayeredPane1));
 
-        jPanel9.setLayout(new java.awt.GridLayout(1, 0));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLayeredPane1.add(jLabel6);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("jLabel7");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(jLabel7);
 
-        jPanel9.add(jScrollPane4);
+        panelBorder2.add(jLayeredPane1);
 
-        jPanel2.setLayout(new java.awt.GridLayout(9, 0));
+        panelBorder3.setLayout(new java.awt.GridLayout(9, 0));
 
         jLabel2.setText("Nome ");
-        jPanel2.add(jLabel2);
-        jPanel2.add(nomeField);
-
-        jPanel8.setLayout(new java.awt.GridLayout(1, 2));
+        panelBorder3.add(jLabel2);
+        panelBorder3.add(nomeField);
 
         jLabel8.setText("Apelido");
-        jPanel8.add(jLabel8);
-
-        jPanel2.add(jPanel8);
+        panelBorder3.add(jLabel8);
 
         apelidoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 apelidoFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(apelidoField);
+        panelBorder3.add(apelidoField);
 
         jLabel1.setText("Contacto");
-        jPanel2.add(jLabel1);
+        panelBorder3.add(jLabel1);
 
         contField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(contField);
+        panelBorder3.add(contField);
 
         jLabel3.setText("Categoria");
-        jPanel2.add(jLabel3);
+        panelBorder3.add(jLabel3);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox1);
+        panelBorder3.add(jComboBox1);
 
-        jPanel3.setLayout(new java.awt.GridLayout(1, 3));
+        panelBorder4.setLayout(new java.awt.GridLayout(1, 3));
 
         registrar.setText("Registrar");
         registrar.addActionListener(new java.awt.event.ActionListener() {
@@ -209,7 +214,7 @@ public class ClienteR extends javax.swing.JPanel {
                 registrarActionPerformed(evt);
             }
         });
-        jPanel3.add(registrar);
+        panelBorder4.add(registrar);
 
         alterar.setText("Alterar");
         alterar.addActionListener(new java.awt.event.ActionListener() {
@@ -217,33 +222,23 @@ public class ClienteR extends javax.swing.JPanel {
                 alterarActionPerformed(evt);
             }
         });
-        jPanel3.add(alterar);
+        panelBorder4.add(alterar);
 
         eliminar.setText("Remover");
-        jPanel3.add(eliminar);
+        panelBorder4.add(eliminar);
 
-        jPanel2.add(jPanel3);
+        panelBorder3.add(panelBorder4);
 
-        jPanel9.add(jPanel2);
+        panelBorder2.add(panelBorder3);
 
-        jPanel11.add(jPanel9, java.awt.BorderLayout.CENTER);
+        add(panelBorder2);
 
-        jPanel7.add(jPanel11);
-
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jPanel4.setPreferredSize(new java.awt.Dimension(600, 50));
-        jPanel4.setLayout(new java.awt.BorderLayout());
+        panelBorder1.setPreferredSize(new java.awt.Dimension(600, 240));
+        panelBorder1.setLayout(new java.awt.BorderLayout());
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Clientes Cadastrados");
-        jPanel4.add(jLabel5, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel4, java.awt.BorderLayout.PAGE_START);
-
-        jPanel5.setPreferredSize(new java.awt.Dimension(500, 427));
-        jPanel5.setRequestFocusEnabled(false);
-        jPanel5.setLayout(new java.awt.BorderLayout());
+        panelBorder1.add(jLabel5, java.awt.BorderLayout.NORTH);
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -266,15 +261,9 @@ public class ClienteR extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tabela);
 
-        jPanel5.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        panelBorder1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jPanel1.add(jPanel5, java.awt.BorderLayout.CENTER);
-
-        jPanel7.add(jPanel1);
-
-        jScrollPane2.setViewportView(jPanel7);
-
-        add(jScrollPane2);
+        add(panelBorder1);
     }// </editor-fold>//GEN-END:initComponents
 
     private void contFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contFieldActionPerformed
@@ -352,6 +341,19 @@ public class ClienteR extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_alterarActionPerformed
 
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            
+            // Carregue a imagem no JLabel
+            ImageIcon imageIcon = new ImageIcon(selectedFile.getAbsolutePath());
+            jLabel6.setIcon(imageIcon);
+        }
+    }//GEN-LAST:event_jLabel7MouseClicked
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alterar;
@@ -363,21 +365,16 @@ public class ClienteR extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField nomeField;
+    private com.raven.swing.PanelBorder panelBorder1;
+    private com.raven.swing.PanelBorder panelBorder2;
+    private com.raven.swing.PanelBorder panelBorder3;
+    private com.raven.swing.PanelBorder panelBorder4;
     private javax.swing.JButton registrar;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables

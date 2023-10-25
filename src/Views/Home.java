@@ -399,8 +399,6 @@ public class Home extends javax.swing.JFrame {
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.WEST);
 
         jPanel9.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Matavele's\\Downloads\\Abstract-Wallpaper-HD-For-Desktop.jpg")); // NOI18N
         jPanel9.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         jPanel2.add(jPanel9, java.awt.BorderLayout.CENTER);

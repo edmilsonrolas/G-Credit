@@ -5,11 +5,25 @@
 package Views.Painels;
 
 import Views.FreshUi;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import com.raven.form.Form_Home;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import javaswingdev.drawer.Drawer;
 import javaswingdev.drawer.DrawerController;
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.text.DefaultEditorKit;
 import raven.toast.Notifications;
 
 /**
@@ -17,7 +31,7 @@ import raven.toast.Notifications;
  * @author Matavele's
  */
 public class Log extends javax.swing.JPanel {
-    
+
     private Venda painelVenda;
     private FornecedorR painelForn;
     private ProdutoR painelProd;
@@ -27,8 +41,10 @@ public class Log extends javax.swing.JPanel {
     private DrawerController dr;
     private JFrame frame;
     private Notifications note;
+    private BufferedImage image;
 
     private boolean a = false;
+
     /**
      * Creates new form Log
      */
@@ -42,8 +58,15 @@ public class Log extends javax.swing.JPanel {
         this.frame = frame;
 //        UIManager.put("Button.arc", 999);
         initComponents();
-        
-        
+        jPanel9.add(new Form_Home(), java.awt.BorderLayout.CENTER);
+
+        try {
+            // Carregue a imagem desejada (substitua o caminho pelo caminho do seu arquivo de imagem)
+            image = ImageIO.read(new File("src//Icones//Abstract-Wallpaper-HD-For-Desktop.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         jButton1.putClientProperty("JButton.buttonType", "help");
         jButton11.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton10.putClientProperty("JButton.buttonType", "toolBarButton");
@@ -65,7 +88,7 @@ public class Log extends javax.swing.JPanel {
                 .drawerBackground(new Color(40, 44, 52))
                 .enableScroll(true)
                 .space(5)
-//                .addChild(new DrawerItem("Clientes").icon(new ImageIcon(getClass().getResource("raven/icon/png/logo.png"))).build())
+                //                .addChild(new DrawerItem("Clientes").icon(new ImageIcon(getClass().getResource("raven/icon/png/logo.png"))).build())
                 .addChild(jButton20)
                 .addChild(jButton21)
                 .addChild(jButton22)
@@ -74,11 +97,29 @@ public class Log extends javax.swing.JPanel {
                 .addChild(jButton25)
                 .addFooter(jPanel6)
                 .build();
-
-        jPopupMenu1.add(jPanel10);
         
 
+        jPopupMenu1.add(jPanel10);
+
     }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (image != null) {
+            g.drawImage(image, 0, 0, this.jPanel9);
+
+        } else {
+            JOptionPane.showInternalMessageDialog(null, "eeee");
+        }
+
+    }
+
+    public JButton getjButton8() {
+        return jButton8;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,6 +135,7 @@ public class Log extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -132,7 +174,7 @@ public class Log extends javax.swing.JPanel {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
 
         jPanel10.setLayout(new java.awt.GridLayout(3, 0));
 
@@ -156,6 +198,8 @@ public class Log extends javax.swing.JPanel {
         jButton4.setToolTipText("");
         jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jPanel10.add(jButton4);
+
+        jLabel1.setText("jLabel1");
 
         setLayout(new java.awt.BorderLayout());
 
@@ -341,10 +385,20 @@ public class Log extends javax.swing.JPanel {
 
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("def");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         jPanel6.add(jButton8);
 
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("night");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
         jPanel6.add(jButton9);
 
         jPanel14.add(jPanel6, java.awt.BorderLayout.PAGE_END);
@@ -354,9 +408,7 @@ public class Log extends javax.swing.JPanel {
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.WEST);
 
         jPanel9.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Matavele's\\Downloads\\Abstract-Wallpaper-HD-For-Desktop.jpg")); // NOI18N
-        jPanel9.add(jLabel1, java.awt.BorderLayout.CENTER);
+        jPanel9.add(jPanel11, java.awt.BorderLayout.PAGE_START);
 
         jPanel2.add(jPanel9, java.awt.BorderLayout.CENTER);
 
@@ -367,16 +419,16 @@ public class Log extends javax.swing.JPanel {
 
         //create void for methode hide and show panel menu
         //        if (a == true) {
-            //            hideshow(jPanel14, a);
-            //            SwingUtilities.updateComponentTreeUI(this);
-            //            //create methode change image
-            //
-            //            a = false;
-            //        } else {
-            //            hideshow(jPanel14, a);
-            //            SwingUtilities.updateComponentTreeUI(this);
-            //            a = true;
-            //        }
+        //            hideshow(jPanel14, a);
+        //            SwingUtilities.updateComponentTreeUI(this);
+        //            //create methode change image
+        //
+        //            a = false;
+        //        } else {
+        //            hideshow(jPanel14, a);
+        //            SwingUtilities.updateComponentTreeUI(this);
+        //            a = true;
+        //        }
         if (dr.isShow()) {
             dr.hide();
         } else {
@@ -389,7 +441,10 @@ public class Log extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
+        jPanel9.removeAll();
+        jPanel9.add(new Form_Home(), java.awt.BorderLayout.CENTER);
+        revalidate();
+        repaint();
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
@@ -460,6 +515,27 @@ public class Log extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton2MouseClicked
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+         
+        EventQueue.invokeLater(()->{
+               FlatAnimatedLafChange.showSnapshot();
+               FlatMacLightLaf.setup();
+               FlatLaf.updateUI();
+               FlatAnimatedLafChange.hideSnapshotWithAnimation();
+               
+           });
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        EventQueue.invokeLater(()->{
+               FlatAnimatedLafChange.showSnapshot();
+               FlatMacDarkLaf.setup();
+               FlatLaf.updateUI();
+               FlatAnimatedLafChange.hideSnapshotWithAnimation();
+               
+           });
+    }//GEN-LAST:event_jButton9ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -492,6 +568,7 @@ public class Log extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;

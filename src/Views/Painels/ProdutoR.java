@@ -11,9 +11,14 @@ import Modelos.Categoria;
 import Modelos.Cliente;
 import Modelos.Operadora;
 import Modelos.Produto;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -27,6 +32,7 @@ public class ProdutoR extends javax.swing.JPanel {
     private ProdutosDAOImpl gestor;
     private OperadoraDAOImpl gero;
     private DefaultComboBoxModel model;
+    private BufferedImage image;
     
     private DefaultTableModel modelo;
     /**
@@ -36,6 +42,12 @@ public class ProdutoR extends javax.swing.JPanel {
         gero = new OperadoraDAOImpl();
         gestor = new ProdutosDAOImpl();
         initComponents();
+        try {
+            // Carregue a imagem desejada (substitua o caminho pelo caminho do seu arquivo de imagem)
+            image = ImageIO.read(new File("src//Icones//Abstract-Wallpaper-HD-For-Desktop.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         add.putClientProperty("JButton.buttonType", "roundRect");
         edit.putClientProperty("JButton.buttonType", "roundRect");
         rmv.putClientProperty("JButton.buttonType", "roundRect");
@@ -52,6 +64,17 @@ public class ProdutoR extends javax.swing.JPanel {
         
         tabela();
         combo();
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (image != null) {
+            g.drawImage(image, 0, 0, this);
+            System.out.println("debugging");
+        }else{
+           JOptionPane.showInternalMessageDialog(null, "eeee");
+        }
+
     }
     
      public void combo(){
@@ -135,9 +158,8 @@ public class ProdutoR extends javax.swing.JPanel {
         jButton1.setText("jButton1");
 
         setPreferredSize(new java.awt.Dimension(500, 500));
-        setLayout(new java.awt.BorderLayout());
 
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(450, 450));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(500, 500));
 
         jPanel4.setPreferredSize(new java.awt.Dimension(450, 450));
         jPanel4.setLayout(new java.awt.GridLayout(2, 0));
@@ -245,7 +267,7 @@ public class ProdutoR extends javax.swing.JPanel {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(572, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,7 +283,7 @@ public class ProdutoR extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(jPanel4);
 
-        add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        add(jScrollPane2);
     }// </editor-fold>//GEN-END:initComponents
 
     private void vlrFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vlrFieldActionPerformed

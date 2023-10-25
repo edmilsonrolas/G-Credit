@@ -8,8 +8,13 @@ import Controllers.CategoriaDAOImpl;
 import Controllers.ListaDAOImpl;
 import Modelos.Categoria;
 import Modelos.Cliente;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 public class CategoriaR extends javax.swing.JPanel {
     
     private CategoriaDAOImpl gestor;
+    private BufferedImage image;
     
     private DefaultTableModel modelo;
     /**
@@ -28,6 +34,12 @@ public class CategoriaR extends javax.swing.JPanel {
     public CategoriaR() {
         gestor = new CategoriaDAOImpl();
         initComponents();
+        try {
+            // Carregue a imagem desejada (substitua o caminho pelo caminho do seu arquivo de imagem)
+            image = ImageIO.read(new File("src//Icones//Abstract-Wallpaper-HD-For-Desktop.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         add.putClientProperty("JButton.buttonType", "roundRect");
         edit.putClientProperty("JButton.buttonType", "roundRect");
         rmv.putClientProperty("JButton.buttonType", "roundRect");
@@ -37,6 +49,18 @@ public class CategoriaR extends javax.swing.JPanel {
         tabela();
         
         
+    }
+    
+     @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (image != null) {
+            g.drawImage(image, 0, 0, this);
+            System.out.println("debugging");
+        }else{
+           JOptionPane.showInternalMessageDialog(null, "eeee");
+        }
+
     }
     
     public void tabela(){
@@ -91,16 +115,15 @@ public class CategoriaR extends javax.swing.JPanel {
         tabela = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(500, 500));
-        setLayout(new java.awt.BorderLayout());
 
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(450, 450));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(500, 500));
         jScrollPane2.setRequestFocusEnabled(false);
 
         jPanel22.setPreferredSize(new java.awt.Dimension(450, 450));
         jPanel22.setRequestFocusEnabled(false);
         jPanel22.setLayout(new java.awt.GridLayout(2, 0));
 
-        jPanel7.setLayout(new java.awt.GridLayout());
+        jPanel7.setLayout(new java.awt.GridLayout(1, 0));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -124,11 +147,11 @@ public class CategoriaR extends javax.swing.JPanel {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addGap(0, 249, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 32, Short.MAX_VALUE)
+            .addGap(0, 35, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel12);
@@ -137,11 +160,11 @@ public class CategoriaR extends javax.swing.JPanel {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addGap(0, 249, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 32, Short.MAX_VALUE)
+            .addGap(0, 35, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel11);
@@ -150,11 +173,11 @@ public class CategoriaR extends javax.swing.JPanel {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addGap(0, 249, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 32, Short.MAX_VALUE)
+            .addGap(0, 35, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel10);
@@ -163,11 +186,11 @@ public class CategoriaR extends javax.swing.JPanel {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addGap(0, 249, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 32, Short.MAX_VALUE)
+            .addGap(0, 35, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel9);
@@ -236,7 +259,7 @@ public class CategoriaR extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(jPanel22);
 
-        add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        add(jScrollPane2);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
