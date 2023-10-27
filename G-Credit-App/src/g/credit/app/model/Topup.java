@@ -7,7 +7,7 @@ package g.credit.app.model;
 /**
  * Representa uma recarga telefónica.
  * 
- * Esta classe armazena informações sobre uma recarga, incluindo o seu ID, valor, operadora e quantidade em stock.
+ * Esta classe armazena informações sobre uma recarga, incluindo o seu ID, valor, operadora, quantidade em stock e preço.
  * 
  * @author rolas
  */
@@ -16,7 +16,7 @@ public class Topup {
     private int value;
     private Operator operator;
     private int stockQuantity;
-
+    private double price;
     
     public enum Operator{
         Vodacom, Movitel, Tmcel 
@@ -33,6 +33,7 @@ public class Topup {
         this.value = value;
         this.operator = operator;
         this.stockQuantity = stockQuantity;
+        calculatePrice();   // Calcula o preço com base na operadora
         generateId();    // deve ser chamado depois da inicializacao de value e operator
     }
 
@@ -121,6 +122,26 @@ public class Topup {
     }
 
     /**
+     * Calcula o preço com base na operadora.
+     */
+    private void calculatePrice() {
+        if (operator != null && value >= 0) {
+            // Preço padrão é 91% do valor se a operadora for Vodacom, 90% se for outra operadora
+            price = (operator == Operator.Vodacom) ? value * 0.91 : value * 0.90;
+        } else {
+            throw new IllegalArgumentException("Operadora ou valor inválidos para calcular o preço da recarga.");
+        }
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+    
+    /**
      * Obtém a quantidade em stock da recarga.
      *
      * @return A quantidade em stock da recarga.
@@ -146,6 +167,7 @@ public class Topup {
         sb.append(", value=").append(value);
         sb.append(", operator=").append(operator);
         sb.append(", stockQuantity=").append(stockQuantity);
+        sb.append(", preço=").append(price);
         sb.append('}');
         return sb.toString();
     }
