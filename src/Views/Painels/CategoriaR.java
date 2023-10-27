@@ -56,7 +56,7 @@ public class CategoriaR extends javax.swing.JPanel {
         super.paintComponent(g);
         if (image != null) {
             g.drawImage(image, 0, 0, this);
-            System.out.println("debugging");
+            
         }else{
            JOptionPane.showInternalMessageDialog(null, "eeee");
         }
@@ -92,110 +92,213 @@ public class CategoriaR extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel22 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        panelBorder5 = new com.raven.swing.PanelBorder();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        panelBorder6 = new com.raven.swing.PanelBorder();
+        jLabel4 = new javax.swing.JLabel();
+        nomeField1 = new javax.swing.JTextField();
+        jPanel14 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        add1 = new javax.swing.JButton();
+        edit1 = new javax.swing.JButton();
+        rmv1 = new javax.swing.JButton();
+        panelBorder2 = new com.raven.swing.PanelBorder();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
+        panelBorder4 = new com.raven.swing.PanelBorder();
         jLabel2 = new javax.swing.JLabel();
         nomeField = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        panelBorder1 = new Views.Painels.PanelBorder();
         add = new javax.swing.JButton();
         edit = new javax.swing.JButton();
         rmv = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        panelBorder3 = new com.raven.swing.PanelBorder();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+
+        panelBorder5.setLayout(new java.awt.GridLayout(1, 0, 5, 0));
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane5.setViewportView(jTextArea2);
+
+        panelBorder5.add(jScrollPane5);
+
+        panelBorder6.setLayout(new java.awt.GridLayout(7, 0, 5, 0));
+
+        jLabel4.setText("Nome da Categoria");
+        panelBorder6.add(jLabel4);
+
+        nomeField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeField1ActionPerformed(evt);
+            }
+        });
+        panelBorder6.add(nomeField1);
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 246, Short.MAX_VALUE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+
+        panelBorder6.add(jPanel14);
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 246, Short.MAX_VALUE)
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+
+        panelBorder6.add(jPanel15);
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 246, Short.MAX_VALUE)
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+
+        panelBorder6.add(jPanel16);
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 246, Short.MAX_VALUE)
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+
+        panelBorder6.add(jPanel17);
+
+        jPanel4.setLayout(new java.awt.GridLayout(1, 3, 1, 0));
+
+        add1.setText("Registrar");
+        add1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(add1);
+
+        edit1.setText("Alterar");
+        jPanel4.add(edit1);
+
+        rmv1.setText("Remover");
+        rmv1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rmv1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(rmv1);
+
+        panelBorder6.add(jPanel4);
+
+        panelBorder5.add(panelBorder6);
 
         setPreferredSize(new java.awt.Dimension(500, 500));
+        setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 20));
 
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(500, 500));
-        jScrollPane2.setRequestFocusEnabled(false);
-
-        jPanel22.setPreferredSize(new java.awt.Dimension(450, 450));
-        jPanel22.setRequestFocusEnabled(false);
-        jPanel22.setLayout(new java.awt.GridLayout(2, 0));
-
-        jPanel7.setLayout(new java.awt.GridLayout(1, 0));
+        panelBorder2.setPreferredSize(new java.awt.Dimension(500, 230));
+        panelBorder2.setLayout(new java.awt.GridLayout(1, 0, 5, 0));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane4.setViewportView(jTextArea1);
 
-        jPanel7.add(jScrollPane4);
+        panelBorder2.add(jScrollPane4);
 
-        jPanel2.setLayout(new java.awt.GridLayout(7, 0));
+        panelBorder4.setLayout(new java.awt.GridLayout(7, 0, 5, 0));
 
         jLabel2.setText("Nome da Categoria");
-        jPanel2.add(jLabel2);
+        panelBorder4.add(jLabel2);
 
         nomeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nomeFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(nomeField);
+        panelBorder4.add(nomeField);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 249, Short.MAX_VALUE)
+            .addGap(0, 247, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 35, Short.MAX_VALUE)
+            .addGap(0, 32, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel12);
+        panelBorder4.add(jPanel12);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 249, Short.MAX_VALUE)
+            .addGap(0, 247, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 35, Short.MAX_VALUE)
+            .addGap(0, 32, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel11);
+        panelBorder4.add(jPanel11);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 249, Short.MAX_VALUE)
+            .addGap(0, 247, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 35, Short.MAX_VALUE)
+            .addGap(0, 32, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel10);
+        panelBorder4.add(jPanel10);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 249, Short.MAX_VALUE)
+            .addGap(0, 247, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 35, Short.MAX_VALUE)
+            .addGap(0, 32, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel9);
+        panelBorder4.add(jPanel9);
 
-        jPanel3.setLayout(new java.awt.GridLayout(1, 3, 1, 0));
+        panelBorder1.setLayout(new java.awt.GridLayout());
 
         add.setText("Registrar");
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -203,10 +306,10 @@ public class CategoriaR extends javax.swing.JPanel {
                 addActionPerformed(evt);
             }
         });
-        jPanel3.add(add);
+        panelBorder1.add(add);
 
         edit.setText("Alterar");
-        jPanel3.add(edit);
+        panelBorder1.add(edit);
 
         rmv.setText("Remover");
         rmv.addActionListener(new java.awt.event.ActionListener() {
@@ -214,23 +317,16 @@ public class CategoriaR extends javax.swing.JPanel {
                 rmvActionPerformed(evt);
             }
         });
-        jPanel3.add(rmv);
+        panelBorder1.add(rmv);
 
-        jPanel2.add(jPanel3);
+        panelBorder4.add(panelBorder1);
 
-        jPanel7.add(jPanel2);
+        panelBorder2.add(panelBorder4);
 
-        jPanel22.add(jPanel7);
+        add(panelBorder2);
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jPanel13.setLayout(new java.awt.BorderLayout());
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Categorias Disponiveis");
-        jPanel13.add(jLabel3, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel13, java.awt.BorderLayout.NORTH);
+        panelBorder3.setPreferredSize(new java.awt.Dimension(600, 250));
+        panelBorder3.setLayout(new java.awt.BorderLayout());
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -253,13 +349,13 @@ public class CategoriaR extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tabela);
 
-        jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        panelBorder3.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jPanel22.add(jPanel1);
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setText("Categorias Disponiveis");
+        panelBorder3.add(jLabel3, java.awt.BorderLayout.NORTH);
 
-        jScrollPane2.setViewportView(jPanel22);
-
-        add(jScrollPane2);
+        add(panelBorder3);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
@@ -284,28 +380,51 @@ public class CategoriaR extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_rmvActionPerformed
 
+    private void nomeField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeField1ActionPerformed
+
+    private void add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_add1ActionPerformed
+
+    private void rmv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rmv1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rmv1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
+    private javax.swing.JButton add1;
     private javax.swing.JButton edit;
+    private javax.swing.JButton edit1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField nomeField;
+    private javax.swing.JTextField nomeField1;
+    private Views.Painels.PanelBorder panelBorder1;
+    private com.raven.swing.PanelBorder panelBorder2;
+    private com.raven.swing.PanelBorder panelBorder3;
+    private com.raven.swing.PanelBorder panelBorder4;
+    private com.raven.swing.PanelBorder panelBorder5;
+    private com.raven.swing.PanelBorder panelBorder6;
     private javax.swing.JButton rmv;
+    private javax.swing.JButton rmv1;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }

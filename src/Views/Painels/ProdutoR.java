@@ -70,7 +70,7 @@ public class ProdutoR extends javax.swing.JPanel {
         super.paintComponent(g);
         if (image != null) {
             g.drawImage(image, 0, 0, this);
-            System.out.println("debugging");
+            
         }else{
            JOptionPane.showInternalMessageDialog(null, "eeee");
         }
@@ -129,12 +129,10 @@ public class ProdutoR extends javax.swing.JPanel {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        panelBorder1 = new Views.Painels.PanelBorder();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
+        panelBorder3 = new Views.Painels.PanelBorder();
         jLabel2 = new javax.swing.JLabel();
         nomeField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -145,70 +143,66 @@ public class ProdutoR extends javax.swing.JPanel {
         qtdField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         combox = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
+        panelBorder4 = new Views.Painels.PanelBorder();
         add = new javax.swing.JButton();
         edit = new javax.swing.JButton();
         rmv = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        panelBorder2 = new Views.Painels.PanelBorder();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
         setPreferredSize(new java.awt.Dimension(500, 500));
+        setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 20));
 
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(500, 500));
-
-        jPanel4.setPreferredSize(new java.awt.Dimension(450, 450));
-        jPanel4.setLayout(new java.awt.GridLayout(2, 0));
-
-        jPanel5.setLayout(new java.awt.GridLayout(1, 0));
+        panelBorder1.setPreferredSize(new java.awt.Dimension(500, 230));
+        panelBorder1.setLayout(new java.awt.GridLayout());
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane4.setViewportView(jTextArea1);
 
-        jPanel5.add(jScrollPane4);
+        panelBorder1.add(jScrollPane4);
 
-        jPanel2.setLayout(new java.awt.GridLayout(11, 0));
+        panelBorder3.setLayout(new java.awt.GridLayout(11, 0));
 
         jLabel2.setText("Plano de Recarga");
-        jPanel2.add(jLabel2);
-        jPanel2.add(nomeField);
+        panelBorder3.add(jLabel2);
+        panelBorder3.add(nomeField);
 
         jLabel1.setText("Preço de Compra");
-        jPanel2.add(jLabel1);
-        jPanel2.add(prcField);
+        panelBorder3.add(jLabel1);
+        panelBorder3.add(prcField);
 
         jLabel9.setText("Preço de Venda");
-        jPanel2.add(jLabel9);
+        panelBorder3.add(jLabel9);
 
         vlrField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vlrFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(vlrField);
+        panelBorder3.add(vlrField);
 
         jLabel10.setText("Quantidade no Stock");
-        jPanel2.add(jLabel10);
+        panelBorder3.add(jLabel10);
 
         qtdField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 qtdFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(qtdField);
+        panelBorder3.add(qtdField);
 
         jLabel11.setText("Operadora");
-        jPanel2.add(jLabel11);
+        panelBorder3.add(jLabel11);
 
         combox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(combox);
+        panelBorder3.add(combox);
 
-        jPanel3.setLayout(new java.awt.GridLayout(1, 3));
+        panelBorder4.setLayout(new java.awt.GridLayout(1, 3));
 
         add.setText("Adicionar");
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -216,7 +210,7 @@ public class ProdutoR extends javax.swing.JPanel {
                 addActionPerformed(evt);
             }
         });
-        jPanel3.add(add);
+        panelBorder4.add(add);
 
         edit.setText("Atualizar");
         edit.addActionListener(new java.awt.event.ActionListener() {
@@ -224,18 +218,23 @@ public class ProdutoR extends javax.swing.JPanel {
                 editActionPerformed(evt);
             }
         });
-        jPanel3.add(edit);
+        panelBorder4.add(edit);
 
         rmv.setText("Remover");
-        jPanel3.add(rmv);
+        panelBorder4.add(rmv);
 
-        jPanel2.add(jPanel3);
+        panelBorder3.add(panelBorder4);
 
-        jPanel5.add(jPanel2);
+        panelBorder1.add(panelBorder3);
 
-        jPanel4.add(jPanel5);
+        add(panelBorder1);
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        panelBorder2.setPreferredSize(new java.awt.Dimension(600, 250));
+        panelBorder2.setLayout(new java.awt.BorderLayout());
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setText("Produtos Existentes");
+        panelBorder2.add(jLabel3, java.awt.BorderLayout.NORTH);
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -255,35 +254,9 @@ public class ProdutoR extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tabela);
 
-        jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        panelBorder2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Produtos Existentes");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel6, java.awt.BorderLayout.NORTH);
-
-        jPanel4.add(jPanel1);
-
-        jScrollPane2.setViewportView(jPanel4);
-
-        add(jScrollPane2);
+        add(panelBorder2);
     }// </editor-fold>//GEN-END:initComponents
 
     private void vlrFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vlrFieldActionPerformed
@@ -375,17 +348,14 @@ public class ProdutoR extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField nomeField;
+    private Views.Painels.PanelBorder panelBorder1;
+    private Views.Painels.PanelBorder panelBorder2;
+    private Views.Painels.PanelBorder panelBorder3;
+    private Views.Painels.PanelBorder panelBorder4;
     private javax.swing.JTextField prcField;
     private javax.swing.JTextField qtdField;
     private javax.swing.JButton rmv;

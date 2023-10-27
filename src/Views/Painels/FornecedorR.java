@@ -57,7 +57,7 @@ public class FornecedorR extends javax.swing.JPanel {
         super.paintComponent(g);
         if (image != null) {
             g.drawImage(image, 0, 0, this);
-            System.out.println("debugging");
+            
         }else{
            JOptionPane.showInternalMessageDialog(null, "eeee");
         }
@@ -95,68 +95,63 @@ public class FornecedorR extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        panelBorder1 = new Views.Painels.PanelBorder();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
+        panelBorder3 = new Views.Painels.PanelBorder();
         jLabel2 = new javax.swing.JLabel();
         nomeField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         contField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         descField = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
+        panelBorder4 = new Views.Painels.PanelBorder();
         add = new javax.swing.JButton();
         edit = new javax.swing.JButton();
         rmv = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        panelBorder2 = new Views.Painels.PanelBorder();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
 
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(500, 500));
+        setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 20));
 
-        jPanel6.setPreferredSize(new java.awt.Dimension(450, 450));
-        jPanel6.setLayout(new java.awt.GridLayout(2, 0));
-
-        jPanel4.setLayout(new java.awt.GridLayout(1, 0));
+        panelBorder1.setPreferredSize(new java.awt.Dimension(500, 230));
+        panelBorder1.setLayout(new java.awt.GridLayout());
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane4.setViewportView(jTextArea1);
 
-        jPanel4.add(jScrollPane4);
+        panelBorder1.add(jScrollPane4);
 
-        jPanel2.setLayout(new java.awt.GridLayout(7, 0));
+        panelBorder3.setLayout(new java.awt.GridLayout(7, 0));
 
         jLabel2.setText("Operadora");
-        jPanel2.add(jLabel2);
+        panelBorder3.add(jLabel2);
 
         nomeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nomeFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(nomeField);
+        panelBorder3.add(nomeField);
 
         jLabel1.setText("Contacto");
-        jPanel2.add(jLabel1);
+        panelBorder3.add(jLabel1);
 
         contField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(contField);
+        panelBorder3.add(contField);
 
         jLabel9.setText("Descrição");
-        jPanel2.add(jLabel9);
-        jPanel2.add(descField);
+        panelBorder3.add(jLabel9);
+        panelBorder3.add(descField);
 
-        jPanel3.setLayout(new java.awt.GridLayout(1, 3, 1, 0));
+        panelBorder4.setLayout(new java.awt.GridLayout());
 
         add.setText("Registrar");
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +159,7 @@ public class FornecedorR extends javax.swing.JPanel {
                 addActionPerformed(evt);
             }
         });
-        jPanel3.add(add);
+        panelBorder4.add(add);
 
         edit.setText("Atualizar");
         edit.addActionListener(new java.awt.event.ActionListener() {
@@ -172,18 +167,23 @@ public class FornecedorR extends javax.swing.JPanel {
                 editActionPerformed(evt);
             }
         });
-        jPanel3.add(edit);
+        panelBorder4.add(edit);
 
         rmv.setText("Remover");
-        jPanel3.add(rmv);
+        panelBorder4.add(rmv);
 
-        jPanel2.add(jPanel3);
+        panelBorder3.add(panelBorder4);
 
-        jPanel4.add(jPanel2);
+        panelBorder1.add(panelBorder3);
 
-        jPanel6.add(jPanel4);
+        add(panelBorder1);
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        panelBorder2.setPreferredSize(new java.awt.Dimension(600, 260));
+        panelBorder2.setLayout(new java.awt.BorderLayout());
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setText("Operadoras Disponiveis");
+        panelBorder2.add(jLabel3, java.awt.BorderLayout.PAGE_START);
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -206,35 +206,9 @@ public class FornecedorR extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tabela);
 
-        jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        panelBorder2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Operadoras Disponiveis");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(262, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel5, java.awt.BorderLayout.NORTH);
-
-        jPanel6.add(jPanel1);
-
-        jScrollPane2.setViewportView(jPanel6);
-
-        add(jScrollPane2);
+        add(panelBorder2);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
@@ -305,17 +279,14 @@ public class FornecedorR extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField nomeField;
+    private Views.Painels.PanelBorder panelBorder1;
+    private Views.Painels.PanelBorder panelBorder2;
+    private Views.Painels.PanelBorder panelBorder3;
+    private Views.Painels.PanelBorder panelBorder4;
     private javax.swing.JButton rmv;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables

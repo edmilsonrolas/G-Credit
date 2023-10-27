@@ -114,12 +114,21 @@ public class ProdutosDAOImpl implements ProdutoDAO {
 
     @Override
     public double totalPrecoProdutos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        double preco = 0;
+        for (Produto produto : produtos) {
+            preco += produto.getValor()*produto.getQuantidadeProduto();
+        }
+        return preco;
     }
 
     @Override
     public int totalQtdProdutos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int qtd =0;
+        for (Produto produto : produtos) {
+            qtd += produto.getQuantidadeProduto();
+            
+        }
+        return qtd;
     }
     
 }

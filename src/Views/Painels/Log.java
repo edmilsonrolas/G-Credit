@@ -5,15 +5,16 @@
 package Views.Painels;
 
 import Views.FreshUi;
+import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.raven.form.Form_Home;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,8 +24,14 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.text.DefaultEditorKit;
-import raven.toast.Notifications;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import net.miginfocom.layout.ComponentWrapper;
+import net.miginfocom.layout.LayoutCallback;
+import raven.glasspanepopup.DefaultLayoutCallBack;
+import raven.glasspanepopup.DefaultOption;
+import raven.glasspanepopup.GlassPanePopup;
+import sample.notification.Notifications;
 
 /**
  *
@@ -38,15 +45,17 @@ public class Log extends javax.swing.JPanel {
     private ListaC painelLista;
     private CategoriaR painelCateg;
     private ClienteR painelCliente;
+    private Funcionario painelFunc;
     private DrawerController dr;
     private JFrame frame;
-    private Notifications note;
     private BufferedImage image;
 
     private boolean a = false;
 
     /**
      * Creates new form Log
+     *
+     * @param frame
      */
     public Log(JFrame frame) {
         painelVenda = new Venda();
@@ -55,9 +64,11 @@ public class Log extends javax.swing.JPanel {
         painelLista = new ListaC();
         painelCateg = new CategoriaR();
         painelCliente = new ClienteR();
+        painelFunc = new Funcionario();
         this.frame = frame;
 //        UIManager.put("Button.arc", 999);
         initComponents();
+
         jPanel9.add(new Form_Home(), java.awt.BorderLayout.CENTER);
 
         try {
@@ -67,7 +78,7 @@ public class Log extends javax.swing.JPanel {
             e.printStackTrace();
         }
 
-        jButton1.putClientProperty("JButton.buttonType", "help");
+        jButton1.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton11.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton10.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton12.putClientProperty("JButton.buttonType", "toolBarButton");
@@ -83,31 +94,26 @@ public class Log extends javax.swing.JPanel {
         jButton2.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton3.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton4.putClientProperty("JButton.buttonType", "toolBarButton");
+        jTextField1.putClientProperty("JTextField.leadingComponent", jButton5);
+        jTextField1.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Procurar...");
+        jTextField1.putClientProperty(FlatClientProperties.STYLE, ""
+                + "showClearButton:true");
 
-        dr = Drawer.newDrawer(frame).header(jPanel5)
-                .drawerBackground(new Color(40, 44, 52))
-                .enableScroll(true)
-                .space(5)
-                //                .addChild(new DrawerItem("Clientes").icon(new ImageIcon(getClass().getResource("raven/icon/png/logo.png"))).build())
-                .addChild(jButton20)
-                .addChild(jButton21)
-                .addChild(jButton22)
-                .addChild(jButton23)
-                .addChild(jButton24)
-                .addChild(jButton25)
-                .addFooter(jPanel6)
-                .build();
         
 
         jPopupMenu1.add(jPanel10);
 
     }
 
+    public DrawerController getDr() {
+        return dr;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (image != null) {
-            g.drawImage(image, 0, 0, this.jPanel9);
+            g.drawImage(image, 0, 0, jPanel9);
 
         } else {
             JOptionPane.showInternalMessageDialog(null, "eeee");
@@ -118,8 +124,6 @@ public class Log extends javax.swing.JPanel {
     public JButton getjButton8() {
         return jButton8;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -136,24 +140,20 @@ public class Log extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
+        jButton11 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -186,6 +186,11 @@ public class Log extends javax.swing.JPanel {
                 jButton2MouseClicked(evt);
             }
         });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel10.add(jButton2);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/icons8-male-user-25.png"))); // NOI18N
@@ -197,9 +202,16 @@ public class Log extends javax.swing.JPanel {
         jButton4.setText("Configurações");
         jButton4.setToolTipText("");
         jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel10.add(jButton4);
 
         jLabel1.setText("jLabel1");
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/search_25px.png"))); // NOI18N
 
         setLayout(new java.awt.BorderLayout());
 
@@ -214,31 +226,39 @@ public class Log extends javax.swing.JPanel {
                 jPanel12MouseClicked(evt);
             }
         });
-        jPanel12.setLayout(new java.awt.GridLayout(2, 2));
-        jPanel12.add(jLabel2);
-        jPanel12.add(jLabel3);
+        jPanel12.setLayout(new java.awt.GridLayout(1, 2));
 
         jPanel17.setLayout(new java.awt.GridLayout(1, 3));
 
+        jPanel7.setLayout(new java.awt.GridLayout(1, 0));
+
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/icons8-menu-24.png"))); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/menu_rounded_25px.png"))); // NOI18N
+        jButton10.setFocusable(false);
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel17.add(jButton10);
+        jPanel7.add(jButton10);
 
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/eye_25px.png"))); // NOI18N
+        jButton12.setFocusable(false);
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
-        jPanel17.add(jButton12);
+        jPanel7.add(jButton12);
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/icons8-notification-25.png"))); // NOI18N
-        jPanel17.add(jButton11);
+        jButton6.setContentAreaFilled(false);
+        jButton6.setFocusable(false);
+        jPanel7.add(jButton6);
 
+        jPanel17.add(jPanel7);
+
+        jButton13.setContentAreaFilled(false);
+        jButton13.setFocusable(false);
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -248,23 +268,24 @@ public class Log extends javax.swing.JPanel {
 
         jPanel12.add(jPanel17);
 
-        jPanel7.setLayout(new java.awt.GridLayout(1, 3));
-        jPanel12.add(jPanel7);
-
         jPanel1.add(jPanel12, java.awt.BorderLayout.LINE_START);
 
         jPanel13.setPreferredSize(new java.awt.Dimension(300, 50));
-        jPanel13.setLayout(new java.awt.GridLayout(2, 3));
-        jPanel13.add(jLabel15);
-        jPanel13.add(jLabel10);
-        jPanel13.add(jLabel16);
-        jPanel13.add(jLabel12);
-        jPanel13.add(jLabel13);
+        jPanel13.setLayout(new java.awt.GridLayout(1, 3));
+        jPanel13.add(jTextField1);
 
         jPanel3.setLayout(new java.awt.GridLayout(1, 2));
 
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/notification_25px.png"))); // NOI18N
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton11);
+
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Matavele's\\Downloads\\icons8-tools-25.png")); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/settings_25px.png"))); // NOI18N
         jButton7.setOpaque(true);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,6 +293,13 @@ public class Log extends javax.swing.JPanel {
             }
         });
         jPanel3.add(jButton7);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/info_25px.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton1);
 
         jPanel13.add(jPanel3);
@@ -289,9 +317,8 @@ public class Log extends javax.swing.JPanel {
         jPanel5.setLayout(new java.awt.BorderLayout());
 
         jLabel9.setFont(new java.awt.Font("Lucida Console", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("GWEVISSA.proj");
+        jLabel9.setText("GWEVISSA");
         jPanel5.add(jLabel9, java.awt.BorderLayout.CENTER);
 
         jPanel14.add(jPanel5, java.awt.BorderLayout.PAGE_START);
@@ -306,7 +333,7 @@ public class Log extends javax.swing.JPanel {
         jPanel8.add(jLabel19);
 
         jButton20.setForeground(new java.awt.Color(255, 255, 255));
-        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/icons8-customer-40.png"))); // NOI18N
+        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/customer_40px.png"))); // NOI18N
         jButton20.setText("Clientes");
         jButton20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton20.addActionListener(new java.awt.event.ActionListener() {
@@ -317,7 +344,7 @@ public class Log extends javax.swing.JPanel {
         jPanel8.add(jButton20);
 
         jButton21.setForeground(new java.awt.Color(255, 255, 255));
-        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/icons8-product-40.png"))); // NOI18N
+        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/category_40px.png"))); // NOI18N
         jButton21.setText("Categoria");
         jButton21.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton21.addActionListener(new java.awt.event.ActionListener() {
@@ -333,7 +360,7 @@ public class Log extends javax.swing.JPanel {
         jPanel8.add(jLabel20);
 
         jButton22.setForeground(new java.awt.Color(255, 255, 255));
-        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/icons8-sell-40.png"))); // NOI18N
+        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/sell_40px.png"))); // NOI18N
         jButton22.setText("Venda");
         jButton22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton22.addActionListener(new java.awt.event.ActionListener() {
@@ -344,7 +371,7 @@ public class Log extends javax.swing.JPanel {
         jPanel8.add(jButton22);
 
         jButton23.setForeground(new java.awt.Color(255, 255, 255));
-        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/icons8-qr-code-40.png"))); // NOI18N
+        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/qr_code_40px.png"))); // NOI18N
         jButton23.setText("Recargas");
         jButton23.setHideActionText(true);
         jButton23.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -356,7 +383,7 @@ public class Log extends javax.swing.JPanel {
         jPanel8.add(jButton23);
 
         jButton24.setForeground(new java.awt.Color(255, 255, 255));
-        jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/icons8-supplier-40.png"))); // NOI18N
+        jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/supplier_40px.png"))); // NOI18N
         jButton24.setText("Operadoras");
         jButton24.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton24.addActionListener(new java.awt.event.ActionListener() {
@@ -367,7 +394,7 @@ public class Log extends javax.swing.JPanel {
         jPanel8.add(jButton24);
 
         jButton25.setForeground(new java.awt.Color(255, 255, 255));
-        jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/icons8-product-40.png"))); // NOI18N
+        jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/shopping_40px.png"))); // NOI18N
         jButton25.setText("Lista");
         jButton25.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton25.addActionListener(new java.awt.event.ActionListener() {
@@ -419,32 +446,49 @@ public class Log extends javax.swing.JPanel {
 
         //create void for methode hide and show panel menu
         //        if (a == true) {
-        //            hideshow(jPanel14, a);
-        //            SwingUtilities.updateComponentTreeUI(this);
-        //            //create methode change image
-        //
-        //            a = false;
-        //        } else {
-        //            hideshow(jPanel14, a);
-        //            SwingUtilities.updateComponentTreeUI(this);
-        //            a = true;
-        //        }
+            //            hideshow(jPanel14, a);
+            //            SwingUtilities.updateComponentTreeUI(this);
+            //            //create methode change image
+            //
+            //            a = false;
+            //        } else {
+            //            hideshow(jPanel14, a);
+            //            SwingUtilities.updateComponentTreeUI(this);
+            //            a = true;
+            //        }
+        dr = Drawer.newDrawer(frame).header(jPanel5)
+                .drawerBackground(UIManager.getColor(ui))
+                .enableScroll(true)
+                .space(5)
+                //                .addChild(new DrawerItem("Clientes").icon(new ImageIcon(getClass().getResource("raven/icon/png/logo.png"))).build())
+                .addChild(jButton20)
+                .addChild(jButton21)
+                .addChild(jButton22)
+                .addChild(jButton23)
+                .addChild(jButton24)
+                .addChild(jButton25)
+                .addFooter(jPanel6)
+                .build();
+            
         if (dr.isShow()) {
             dr.hide();
         } else {
             dr.show();
         }
+
+
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         jPanel9.removeAll();
+
         jPanel9.add(new Form_Home(), java.awt.BorderLayout.CENTER);
         revalidate();
         repaint();
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
@@ -453,7 +497,7 @@ public class Log extends javax.swing.JPanel {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
 
-        jPopupMenu1.show(jButton7, WIDTH, 25);
+        jPopupMenu1.show(jButton7, WIDTH, 50);
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -516,25 +560,76 @@ public class Log extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-         
-        EventQueue.invokeLater(()->{
-               FlatAnimatedLafChange.showSnapshot();
-               FlatMacLightLaf.setup();
-               FlatLaf.updateUI();
-               FlatAnimatedLafChange.hideSnapshotWithAnimation();
-               
-           });
+
+        EventQueue.invokeLater(() -> {
+            FlatAnimatedLafChange.showSnapshot();
+            FlatMacLightLaf.setup();
+            FlatLaf.updateUI();
+            FlatAnimatedLafChange.hideSnapshotWithAnimation();
+
+        });
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        EventQueue.invokeLater(()->{
-               FlatAnimatedLafChange.showSnapshot();
-               FlatMacDarkLaf.setup();
-               FlatLaf.updateUI();
-               FlatAnimatedLafChange.hideSnapshotWithAnimation();
-               
-           });
+        EventQueue.invokeLater(() -> {
+            FlatAnimatedLafChange.showSnapshot();
+            FlatMacDarkLaf.setup();
+            FlatLaf.updateUI();
+            FlatAnimatedLafChange.hideSnapshotWithAnimation();
+
+        });
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        GlassPanePopup.install(frame);
+        GlassPanePopup.showPopup(new Notifications(), new DefaultOption() {
+            @Override
+            public float opacity() {
+                return (float) 0.3;
+            }
+
+            @Override
+            public LayoutCallback getLayoutCallBack(Component parent) {
+                return new DefaultLayoutCallBack(parent) {
+                    @Override
+                    public void correctBounds(ComponentWrapper cw) {
+                        if (parent.isVisible()) {
+                            Point pl = parent.getLocationOnScreen();
+                            Point bl = jButton11.getLocationOnScreen();
+                            int x = bl.x - pl.x;
+                            int y = bl.y - pl.y;
+                            y += (1f - getAnimate()) * 10f;
+                            cw.setBounds(x - cw.getWidth() + jButton11.getWidth(), y + jButton11.getHeight(), cw.getWidth(), cw.getHeight());
+                        } else {
+                            super.correctBounds(cw);
+                        }
+                    }
+                };
+            }
+
+            @Override
+            public String getLayout(Component parent, float animate) {
+                return null;
+            }
+        });
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        painelFunc = new Funcionario();
+        jPanel9.removeAll();
+        jPanel9.add(painelFunc, java.awt.BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -552,19 +647,14 @@ public class Log extends javax.swing.JPanel {
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -583,5 +673,6 @@ public class Log extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

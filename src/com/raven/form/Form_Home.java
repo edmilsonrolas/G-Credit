@@ -35,7 +35,7 @@ public class Form_Home extends javax.swing.JPanel {
         modelo.addColumn("Nome");
         modelo.addColumn("Nome");
         card1.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/stock.png")), "Total Em Stock", ""+gestor1.totalVendaProdutos(), "Increased by 60%"));
-        card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/profit.png")), "Total Profit", "$15000", "Increased by 25%"));
+        card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/profit.png")), "Lucro Total", "MZN"+(gestor1.totalPrecoProdutos()-gestor1.totalVendaProdutos()), "Increased by 25%"));
         card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/flag.png")), "Unique Visitors", "$300000", "Increased by 70%"));
         //  add row table
         spTable.setVerticalScrollBar(new ScrollBar());

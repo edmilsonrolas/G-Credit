@@ -4,8 +4,6 @@
  */
 package Views;
 
-import Views.Painels.ClienteR;
-import Views.Painels.Log;
 import Views.Painels.Logino;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto_mono.FlatRobotoMonoFont;
@@ -31,11 +29,15 @@ public class FreshUi extends JFrame {
      */
     public FreshUi() {
         login = new Logino(this);
+        
         panel = login;
         init(panel);
+        
+        
     }
 
     public static void main(String[] args) {
+        
         FlatRobotoMonoFont.install();
         FlatLaf.registerCustomDefaultsSource("Style");
         UIManager.put("defaultFont", new Font(FlatRobotoMonoFont.FAMILY, Font.PLAIN, 13));

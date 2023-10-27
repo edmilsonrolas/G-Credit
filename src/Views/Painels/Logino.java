@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
+import raven.glasspanepopup.GlassPanePopup;
 import raven.toast.Notifications;
 
 /**
@@ -71,6 +72,8 @@ public class Logino extends JPanel {
     public Logino(JFrame frame) {
 
         init();
+        GlassPanePopup.install(frame);
+        Notifications.getInstance().setJFrame(frame);
         try {
             // Carregue a imagem desejada (substitua o caminho pelo caminho do seu arquivo de imagem)
             image = ImageIO.read(new File("src//Icones//Abstract-Wallpaper-HD-For-Desktop.jpg"));
@@ -101,10 +104,10 @@ public class Logino extends JPanel {
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FuncionarioDAOImpl gestor = new FuncionarioDAOImpl();
+                
 
                 if ("admin".equals(user.getText())) {
-
+                    
                     FreshUi casa = (FreshUi) frame;
                     casa.setPanel(new Log(casa));
                     casa.setVisible(true);
@@ -112,7 +115,7 @@ public class Logino extends JPanel {
                     revalidate();
                 } else {
                     
-                    notes.show(Notifications.Type.INFO, "Crede");
+                    Notifications.getInstance().show(Notifications.Type.ERROR, "Credenciais invalidas, tente novamente!");
                 }
             }
         });

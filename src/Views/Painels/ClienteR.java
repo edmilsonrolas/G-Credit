@@ -133,8 +133,11 @@ public class ClienteR extends javax.swing.JPanel {
 
         panelBorder2 = new com.raven.swing.PanelBorder();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        imageAvatar1 = new Views.Painels.ImageAvatar();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         panelBorder3 = new com.raven.swing.PanelBorder();
         jLabel2 = new javax.swing.JLabel();
         nomeField = new javax.swing.JTextField();
@@ -154,23 +157,35 @@ public class ClienteR extends javax.swing.JPanel {
         tabela = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(500, 500));
-        setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 10));
+        setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 20));
 
         panelBorder2.setLayout(new java.awt.GridLayout(1, 0, 5, 0));
 
         jLayeredPane1.setLayout(new javax.swing.OverlayLayout(jLayeredPane1));
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLayeredPane1.add(jLabel6);
+        imageAvatar1.setLayout(new java.awt.FlowLayout());
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("jLabel7");
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
+        jPanel1.setPreferredSize(new java.awt.Dimension(100, 25));
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
+
+        jButton1.setText("Adicionar Fotografia");
+        jButton1.setFocusPainted(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jLabel7);
+        jPanel1.add(jButton1);
+
+        jButton2.setText("jButton2");
+        jPanel1.add(jButton2);
+
+        jButton3.setText("jButton3");
+        jPanel1.add(jButton3);
+
+        imageAvatar1.add(jPanel1);
+
+        jLayeredPane1.add(imageAvatar1);
 
         panelBorder2.add(jLayeredPane1);
 
@@ -341,7 +356,7 @@ public class ClienteR extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_alterarActionPerformed
 
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
 
@@ -350,9 +365,13 @@ public class ClienteR extends javax.swing.JPanel {
             
             // Carregue a imagem no JLabel
             ImageIcon imageIcon = new ImageIcon(selectedFile.getAbsolutePath());
-            jLabel6.setIcon(imageIcon);
+            String caminho = selectedFile.getAbsolutePath();
+            System.out.println(caminho);
+            imageAvatar1.setIcon(imageIcon);
+            revalidate();
+            repaint();
         }
-    }//GEN-LAST:event_jLabel7MouseClicked
+    }//GEN-LAST:event_jButton1ActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -360,15 +379,18 @@ public class ClienteR extends javax.swing.JPanel {
     private javax.swing.JTextField apelidoField;
     private javax.swing.JTextField contField;
     private javax.swing.JButton eliminar;
+    private Views.Painels.ImageAvatar imageAvatar1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nomeField;
     private com.raven.swing.PanelBorder panelBorder1;
