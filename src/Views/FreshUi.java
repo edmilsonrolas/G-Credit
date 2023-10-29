@@ -4,6 +4,7 @@
  */
 package Views;
 
+import Views.Painels.Assino;
 import Views.Painels.Logino;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto_mono.FlatRobotoMonoFont;

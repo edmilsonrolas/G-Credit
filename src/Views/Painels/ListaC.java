@@ -6,10 +6,12 @@ package Views.Painels;
 
 import Controllers.ClienteDAOImpl;
 import Controllers.ListaDAOImpl;
+import Controllers.OperadoraDAOImpl;
 import Controllers.ProdutosDAOImpl;
 import Modelos.Categoria;
 import Modelos.Cliente;
 import Modelos.Lista;
+import Modelos.Operadora;
 import Modelos.Produto;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -31,11 +33,13 @@ public class ListaC extends javax.swing.JPanel {
     private ListaDAOImpl gestor;
     private ProdutosDAOImpl gestor1;
     private ClienteDAOImpl gestor2;
+    private OperadoraDAOImpl gestor3;
 
     private DefaultTableModel modelo;
     private DefaultComboBoxModel model;
     private DefaultComboBoxModel model2;
-    
+    private DefaultComboBoxModel model3;
+
     private BufferedImage image;
 
     /**
@@ -46,6 +50,7 @@ public class ListaC extends javax.swing.JPanel {
         gestor = new ListaDAOImpl();
         gestor1 = new ProdutosDAOImpl();
         gestor2 = new ClienteDAOImpl();
+        gestor3 = new OperadoraDAOImpl();
         initComponents();
         try {
             // Carregue a imagem desejada (substitua o caminho pelo caminho do seu arquivo de imagem)
@@ -58,24 +63,27 @@ public class ListaC extends javax.swing.JPanel {
         Remover.putClientProperty("JButton.buttonType", "roundRect");
         model = new DefaultComboBoxModel();
         model2 = new DefaultComboBoxModel();
+        model3 = new DefaultComboBoxModel();
         modelo = new DefaultTableModel();
         modelo.addColumn("Cliente");
-        modelo.addColumn("Produto");
+        modelo.addColumn("Recarga");
+        modelo.addColumn("Operadora");
         modelo.addColumn("Quantidade");
         modelo.addColumn("total");
 
-        combo1();
+        combo3();
         combo2();
+
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (image != null) {
             g.drawImage(image, 0, 0, this);
-            
-        }else{
-           JOptionPane.showInternalMessageDialog(null, "eeee");
+
+        } else {
+            JOptionPane.showInternalMessageDialog(null, "eeee");
         }
     }
 
@@ -87,17 +95,18 @@ public class ListaC extends javax.swing.JPanel {
         Iterator it = ls.iterator();
 
         while (it.hasNext()) {
-            
+
             Lista lista = (Lista) it.next();
-            if(lista.isStatus()==true){
-            Object[] fila = new Object[4];
+            if (lista.isStatus() == true) {
+                Object[] fila = new Object[5];
 
-            fila[0] = lista.getCliente().getId();
-            fila[1] = lista.getProduto().getId();
-            fila[2] = lista.getQuantidade();
-            fila[3] = lista.getTotal();
+                fila[0] = lista.getCliente().getId();
+                fila[1] = lista.getProduto().getId();
+                fila[2] = lista.getProduto().getFornecedor().getNome();
+                fila[3] = lista.getQuantidade();
+                fila[4] = lista.getTotal();
 
-            modelo.addRow(fila);
+                modelo.addRow(fila);
             }
 
         }
@@ -106,8 +115,9 @@ public class ListaC extends javax.swing.JPanel {
 
     }
 
-    public void combo1() {
-        List cat = gestor1.listarProdutos();
+    public void combo1(List lista) {
+        model2.removeAllElements();
+        List cat = lista;
 
         Iterator it = cat.iterator();
 
@@ -115,7 +125,6 @@ public class ListaC extends javax.swing.JPanel {
 
             Produto produto = (Produto) it.next();
             String nome = produto.getNomeProduto();
-
             model2.addElement(nome);
         }
 
@@ -138,6 +147,22 @@ public class ListaC extends javax.swing.JPanel {
         combox.setModel(model);
     }
 
+    public void combo3() {
+        List cat = gestor3.listarOperadoras();
+
+        Iterator it = cat.iterator();
+
+        while (it.hasNext()) {
+
+            Operadora produto = (Operadora) it.next();
+            String nome = produto.getNome();
+
+            model3.addElement(nome);
+        }
+
+        combox3.setModel(model3);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -153,10 +178,20 @@ public class ListaC extends javax.swing.JPanel {
         panelBorder3 = new Views.Painels.PanelBorder();
         jLabel2 = new javax.swing.JLabel();
         combox = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        combox3 = new javax.swing.JComboBox<>();
+        panelBorder6 = new Views.Painels.PanelBorder();
         jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        panelBorder5 = new Views.Painels.PanelBorder();
         combox2 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        panelBorder7 = new Views.Painels.PanelBorder();
         jLabel9 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        panelBorder8 = new Views.Painels.PanelBorder();
         qtdField = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         panelBorder4 = new Views.Painels.PanelBorder();
         add = new javax.swing.JButton();
         edit = new javax.swing.JButton();
@@ -169,8 +204,8 @@ public class ListaC extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(500, 500));
         setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 20));
 
-        panelBorder1.setPreferredSize(new java.awt.Dimension(400, 230));
-        panelBorder1.setLayout(new java.awt.GridLayout());
+        panelBorder1.setPreferredSize(new java.awt.Dimension(500, 230));
+        panelBorder1.setLayout(new java.awt.GridLayout(1, 0));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -178,7 +213,7 @@ public class ListaC extends javax.swing.JPanel {
 
         panelBorder1.add(jScrollPane4);
 
-        panelBorder3.setLayout(new java.awt.GridLayout(7, 0));
+        panelBorder3.setLayout(new java.awt.GridLayout(9, 0));
 
         jLabel2.setText("Cliente");
         panelBorder3.add(jLabel2);
@@ -191,15 +226,59 @@ public class ListaC extends javax.swing.JPanel {
         });
         panelBorder3.add(combox);
 
+        jLabel4.setText("Operadora");
+        panelBorder3.add(jLabel4);
+
+        combox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combox3ActionPerformed(evt);
+            }
+        });
+        panelBorder3.add(combox3);
+
+        panelBorder6.setLayout(new java.awt.GridLayout());
+
         jLabel1.setText("Recarga");
-        panelBorder3.add(jLabel1);
+        panelBorder6.add(jLabel1);
+
+        jLabel5.setText("Preço");
+        panelBorder6.add(jLabel5);
+
+        panelBorder3.add(panelBorder6);
+
+        panelBorder5.setLayout(new java.awt.GridLayout());
 
         combox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        panelBorder3.add(combox2);
+        combox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combox2ActionPerformed(evt);
+            }
+        });
+        panelBorder5.add(combox2);
+
+        jTextField1.setEnabled(false);
+        panelBorder5.add(jTextField1);
+
+        panelBorder3.add(panelBorder5);
+
+        panelBorder7.setLayout(new java.awt.GridLayout());
 
         jLabel9.setText("Quantidade");
-        panelBorder3.add(jLabel9);
-        panelBorder3.add(qtdField);
+        panelBorder7.add(jLabel9);
+
+        jLabel6.setText("Total");
+        panelBorder7.add(jLabel6);
+
+        panelBorder3.add(panelBorder7);
+
+        panelBorder8.setLayout(new java.awt.GridLayout());
+        panelBorder8.add(qtdField);
+
+        jTextField2.setEnabled(false);
+        panelBorder8.add(jTextField2);
+
+        panelBorder3.add(panelBorder8);
 
         panelBorder4.setLayout(new java.awt.GridLayout(1, 3));
 
@@ -298,23 +377,21 @@ public class ListaC extends javax.swing.JPanel {
 
             List<Lista> lc = gestor.buscarListaCliente(cliente);
 
-
-                    try {
-                        Lista list = new Lista(cliente, prod, quantidade);
-                        prod.setQuantidadeProduto(list.getRemanescente());
-                        gestor1.atualizarProdutos(prod);
-                        try {
-                            gestor.adicionarLista(list);
-                            JOptionPane.showMessageDialog(null, "Recarga adicionada a lista de compras!");
-                            qtdField.setText("");
-                            tabela(cliente);
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, e);
-                        }
-                    } catch (NullPointerException e) {
-                        JOptionPane.showMessageDialog(null, "excedeu o limite" + e.getMessage());
-                    }
-
+            try {
+                Lista list = new Lista(cliente, prod, quantidade);
+                prod.setQuantidadeProduto(list.getRemanescente());
+                gestor1.atualizarProdutos(prod);
+                try {
+                    gestor.adicionarLista(list);
+                    JOptionPane.showMessageDialog(null, "Recarga adicionada a lista de compras!");
+                    qtdField.setText("");
+                    tabela(cliente);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "excedeu o limite" + e.getMessage());
+            }
 
         } else {
             JOptionPane.showMessageDialog(null, "Recarga/Cliente selecionado inválido.");
@@ -363,42 +440,64 @@ public class ListaC extends javax.swing.JPanel {
     }//GEN-LAST:event_editActionPerformed
 
     private void RemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoverActionPerformed
-        List<Cliente> cs = gestor2.listarCliente();
-        List<Produto> ps = gestor1.listarProdutos();
-        int com = combox.getSelectedIndex();
-        int com1 = combox2.getSelectedIndex();
 
         int selected = tabela.getSelectedRow();
 
         if (selected != -1) {
-            Produto cat1 = ps.get(com1);
-            Cliente cat = cs.get(com);
-            int quantidade = Integer.parseInt(qtdField.getText());
 
             //            String nome = JOptionPane.showInputDialog("Editar nome do cliente:", modelo.getValueAt(selected, 1));
             //            String email = JOptionPane.showInputDialog("Editar email do cliente:", modelo.getValueAt(selected, 1));
-            if (quantidade != 0) {
-                int id = (int) modelo.getValueAt(selected, 0);
-                int id1 = (int) modelo.getValueAt(selected, 1);
+            int id = (int) modelo.getValueAt(selected, 0);
+            int id1 = (int) modelo.getValueAt(selected, 1);
 
-                Cliente cliente = gestor2.buscarCliente(id);
-                Produto produto = gestor1.buscarProduto(id1);
+            Cliente cliente = gestor2.buscarCliente(id);
+            Produto produto = gestor1.buscarProduto(id1);
 
-                List<Lista> listas = gestor.buscarListaCliente(cliente);
-                for (Lista lista : listas) {
-                    if (lista.getProduto().getId() == id1) {
-                        gestor.removerLista(lista);
-                        
-                    }
+            List<Lista> listas = gestor.buscarListaCliente(cliente);
+            for (Lista lista : listas) {
+                if (lista.getProduto().getId() == id1) {
+                    gestor.removerLista(lista);
+                    Produto prdt = lista.getProduto();       
+                
+                int quantidade = prdt.getQuantidadeProduto();
+                prdt.setQuantidadeProduto(lista.getQuantidade()+quantidade);
+                gestor1.atualizarProdutos(prdt);
 
                 }
-                tabela(cliente);
 
             }
+            tabela(cliente);
+
         } else {
             JOptionPane.showMessageDialog(null, "Selecione uma Recarga para Eliminar.");
         }
     }//GEN-LAST:event_RemoverActionPerformed
+
+    private void combox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combox2ActionPerformed
+        List recs = gestor1.listarProdutos();
+        int selected = combox2.getSelectedIndex();
+
+        if (selected != -1) {
+            Produto prod = (Produto) recs.get(selected);
+            double prc = prod.getValor();
+
+            jTextField1.setText("" + prc);
+        }
+
+    }//GEN-LAST:event_combox2ActionPerformed
+
+    private void combox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combox3ActionPerformed
+
+        List recs = gestor3.listarOperadoras();
+        int selected = combox3.getSelectedIndex();
+
+        if (selected != -1) {
+            Operadora prod = (Operadora) recs.get(selected);
+            List recas = gestor1.listarPorOperadora(prod);
+
+            combo1(recas);
+        }
+    }//GEN-LAST:event_combox3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -406,18 +505,28 @@ public class ListaC extends javax.swing.JPanel {
     private javax.swing.JButton add;
     private javax.swing.JComboBox<String> combox;
     private javax.swing.JComboBox<String> combox2;
+    private javax.swing.JComboBox<String> combox3;
     private javax.swing.JButton edit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private Views.Painels.PanelBorder panelBorder1;
     private Views.Painels.PanelBorder panelBorder2;
     private Views.Painels.PanelBorder panelBorder3;
     private Views.Painels.PanelBorder panelBorder4;
+    private Views.Painels.PanelBorder panelBorder5;
+    private Views.Painels.PanelBorder panelBorder6;
+    private Views.Painels.PanelBorder panelBorder7;
+    private Views.Painels.PanelBorder panelBorder8;
     private javax.swing.JTextField qtdField;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables

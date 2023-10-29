@@ -54,12 +54,13 @@ public class ProdutoR extends javax.swing.JPanel {
         model = new DefaultComboBoxModel();
         modelo = new DefaultTableModel();
         modelo.addColumn("Id");
-        modelo.addColumn("Produto");
+        modelo.addColumn("Recarga");
+        modelo.addColumn("Operadora");
         modelo.addColumn("Compra");
         modelo.addColumn("Venda");
         modelo.addColumn("Quantidade");
-        modelo.addColumn("Validade");
-        modelo.addColumn("Fornecedor");
+        
+        
         modelo.addColumn("Entrada");
         
         tabela();
@@ -105,12 +106,13 @@ public class ProdutoR extends javax.swing.JPanel {
             Object[] fila = new Object[8];
             fila[0] = produto.getId();
             fila[1] = produto.getNomeProduto();
-            fila[2] = produto.getPreco();
-            fila[3] = produto.getValor();
-            fila[4] = produto.getQuantidadeProduto();
-            fila[5] = produto.getFornecedor();
-            fila[6] = produto.getValidadeProduto();
-            fila[7] = produto.getEntrada();
+            fila[2] = produto.getFornecedor().getNome();
+            fila[3] = produto.getPreco();
+            fila[4] = produto.getValor();
+            fila[5] = produto.getQuantidadeProduto();
+            
+            
+            fila[6] = produto.getEntrada();
             
             modelo.addRow(fila);
         }
@@ -133,6 +135,8 @@ public class ProdutoR extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         panelBorder3 = new Views.Painels.PanelBorder();
+        jLabel11 = new javax.swing.JLabel();
+        combox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         nomeField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -141,8 +145,6 @@ public class ProdutoR extends javax.swing.JPanel {
         vlrField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         qtdField = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        combox = new javax.swing.JComboBox<>();
         panelBorder4 = new Views.Painels.PanelBorder();
         add = new javax.swing.JButton();
         edit = new javax.swing.JButton();
@@ -158,7 +160,7 @@ public class ProdutoR extends javax.swing.JPanel {
         setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 20));
 
         panelBorder1.setPreferredSize(new java.awt.Dimension(500, 230));
-        panelBorder1.setLayout(new java.awt.GridLayout());
+        panelBorder1.setLayout(new java.awt.GridLayout(1, 0));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -167,6 +169,12 @@ public class ProdutoR extends javax.swing.JPanel {
         panelBorder1.add(jScrollPane4);
 
         panelBorder3.setLayout(new java.awt.GridLayout(11, 0));
+
+        jLabel11.setText("Operadora");
+        panelBorder3.add(jLabel11);
+
+        combox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        panelBorder3.add(combox);
 
         jLabel2.setText("Plano de Recarga");
         panelBorder3.add(jLabel2);
@@ -195,12 +203,6 @@ public class ProdutoR extends javax.swing.JPanel {
             }
         });
         panelBorder3.add(qtdField);
-
-        jLabel11.setText("Operadora");
-        panelBorder3.add(jLabel11);
-
-        combox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        panelBorder3.add(combox);
 
         panelBorder4.setLayout(new java.awt.GridLayout(1, 3));
 
@@ -233,7 +235,7 @@ public class ProdutoR extends javax.swing.JPanel {
         panelBorder2.setLayout(new java.awt.BorderLayout());
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Produtos Existentes");
+        jLabel3.setText("Recargas Existentes");
         panelBorder2.add(jLabel3, java.awt.BorderLayout.NORTH);
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
@@ -302,7 +304,7 @@ public class ProdutoR extends javax.swing.JPanel {
     }//GEN-LAST:event_addActionPerformed
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
-         List<Operadora> cs = gero.listarOperadoras();
+        List<Operadora> cs = gero.listarOperadoras();
         List<Produto> clientes = gestor.listarProdutos();
         int com = combox.getSelectedIndex();
         int selected = tabela.getSelectedRow();

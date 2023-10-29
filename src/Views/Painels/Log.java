@@ -39,7 +39,7 @@ import sample.notification.Notifications;
  */
 public class Log extends javax.swing.JPanel {
 
-    private Venda painelVenda;
+    private VendaR painelVenda;
     private FornecedorR painelForn;
     private ProdutoR painelProd;
     private ListaC painelLista;
@@ -58,7 +58,7 @@ public class Log extends javax.swing.JPanel {
      * @param frame
      */
     public Log(JFrame frame) {
-        painelVenda = new Venda();
+        painelVenda = new VendaR();
         painelForn = new FornecedorR();
         painelProd = new ProdutoR();
         painelLista = new ListaC();
@@ -519,7 +519,7 @@ public class Log extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        painelVenda = new Venda();
+        painelVenda = new VendaR();
         jPanel9.removeAll();
         jPanel9.add(painelVenda, java.awt.BorderLayout.CENTER);
         revalidate();

@@ -6,6 +6,7 @@ package Controllers;
 
 import Interfaces.ProdutoDAO;
 import Modelos.Categoria;
+import Modelos.Operadora;
 import Modelos.Produto;
 import java.io.File;
 import java.io.FileInputStream;
@@ -129,6 +130,18 @@ public class ProdutosDAOImpl implements ProdutoDAO {
             
         }
         return qtd;
+    }
+
+    @Override
+    public List listarPorOperadora(Operadora operadora) {
+         List recas = new ArrayList();
+         for (Produto produto : produtos) {
+            if(produto.getFornecedor().getId()==operadora.getId()){
+                recas.add(produto);
+            }
+      
+        }
+         return recas;
     }
     
 }

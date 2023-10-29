@@ -78,8 +78,8 @@ public class Lista implements Serializable {
         if (produto.getQuantidadeProduto() < dif) {
             JOptionPane.showMessageDialog(null, " quantidade excedida");
         } else {
-
-            produto.setQuantidadeProduto(produto.getQuantidadeProduto() - dif);
+            remanescente = produto.getQuantidadeProduto() - dif;
+            produto.setQuantidadeProduto(remanescente);
             
             this.quantidade = quantidade;
             

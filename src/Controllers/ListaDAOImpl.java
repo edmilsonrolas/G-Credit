@@ -8,6 +8,7 @@ import Interfaces.ListaDAO;
 import Modelos.Categoria;
 import Modelos.Cliente;
 import Modelos.Lista;
+import Modelos.Produto;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -21,7 +22,7 @@ import java.util.List;
  *
  * @author Matavele's
  */
-public class ListaDAOImpl implements ListaDAO {
+public class ListaDAOImpl extends ProdutosDAOImpl implements ListaDAO {
 
     private List<Lista> listas;
 
@@ -53,9 +54,11 @@ public class ListaDAOImpl implements ListaDAO {
     public void removerLista(Lista lista) {
         int index = 0;
         for (Lista lista1 : listas) {
+            
             if (lista1.getProduto().getId() == lista.getProduto().getId()) {
-                lista.setStatus(false);
-                listas.set(index, lista1);
+                Produto prdt = lista1.getProduto();
+                lista.setStatus(false);                             
+                listas.set(index, lista);
             }
             index++;
 
@@ -67,7 +70,8 @@ public class ListaDAOImpl implements ListaDAO {
     public List buscarListaCliente(Cliente cliente) {
         List listinha = new ArrayList();
         for (Lista lista : listas) {
-            if (lista.getCliente().getId() == cliente.getId()) {
+            if (lista.getCliente().getId() == cliente.getId() && lista.isStatus()) {
+                
                 listinha.add(lista);
             }
         }

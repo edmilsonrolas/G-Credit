@@ -47,7 +47,7 @@ public class Notifications extends javax.swing.JPanel {
     private void loadNoti() {
         for (Produto produto : produtos) {
             if(produto.getQuantidadeProduto()<7){
-               panel.add(new Item(new ImageIcon(getClass().getResource("/sample/notification/p1.jpg")), produto.getFornecedor().getNome(), produto.getNomeProduto()+" esta com nivel baixo no stock", "restantes: "+produto.getQuantidadeProduto()));  
+               panel.add(new Item(new ImageIcon(getClass().getResource("/Icones/mv.png")), produto.getFornecedor().getNome(), produto.getNomeProduto()+" esta com nivel baixo no stock", "restantes: "+produto.getQuantidadeProduto()));  
             }
             
         }

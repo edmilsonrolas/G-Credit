@@ -9,7 +9,7 @@ import Views.Painels.ClienteR;
 import Views.Painels.FornecedorR;
 import Views.Painels.ListaC;
 import Views.Painels.ProdutoR;
-import Views.Painels.Venda;
+import Views.Painels.VendaR;
 import Views.models.DrawerItem;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
@@ -46,7 +46,7 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
  */
 public class Home extends javax.swing.JFrame {
 
-    private Venda painelVenda;
+    private VendaR painelVenda;
     private FornecedorR painelForn;
     private ProdutoR painelProd;
     private ListaC painelLista;
@@ -60,7 +60,7 @@ public class Home extends javax.swing.JFrame {
      * Creates new form Home
      */
     public Home() {
-        painelVenda = new Venda();
+        painelVenda = new VendaR();
         painelForn = new FornecedorR();
         painelProd = new ProdutoR();
         painelLista = new ListaC();
@@ -465,7 +465,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        painelVenda = new Venda();
+        painelVenda = new VendaR();
         jPanel9.removeAll();
         jPanel9.add(painelVenda, java.awt.BorderLayout.CENTER);
         revalidate();

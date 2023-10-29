@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Modelos.Operadora;
 import Modelos.Produto;
 import java.util.List;
 
@@ -20,6 +21,8 @@ public interface ProdutoDAO {
     Produto buscarProduto(int id);
 
     void removerProduto(Produto produto);
+    
+    List listarPorOperadora(Operadora operadora);
 
     List listarProdutos();
     
