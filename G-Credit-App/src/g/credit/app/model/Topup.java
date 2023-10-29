@@ -167,7 +167,7 @@ public class Topup {
         sb.append(", value=").append(value);
         sb.append(", operator=").append(operator);
         sb.append(", stockQuantity=").append(stockQuantity);
-        sb.append(", preço=").append(price);
+        sb.append(", preço unitário=").append(price);
         sb.append('}');
         return sb.toString();
     }

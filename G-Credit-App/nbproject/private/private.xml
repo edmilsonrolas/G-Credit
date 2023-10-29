@@ -4,7 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/rolas/DMI23/POO/G-Credit/G-Credit-App/src/g/credit/app/model/User.java</file>
+            <file>file:/home/rolas/DMI23/POO/G-Credit/G-Credit-App/src/g/credit/app/model/Person.java</file>
             <file>file:/home/rolas/DMI23/POO/G-Credit/G-Credit-App/src/g/credit/app/model/Topup.java</file>
+            <file>file:/home/rolas/DMI23/POO/G-Credit/G-Credit-App/src/g/credit/app/model/Sale.java</file>
         </group>
     </open-files>
 </project-private>
