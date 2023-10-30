@@ -9,6 +9,7 @@ import Controllers.ListaDAOImpl;
 import Controllers.VendaDAOImpl;
 import Modelos.Categoria;
 import Modelos.Cliente;
+import Modelos.Funcionario;
 import Modelos.Operadora;
 import Modelos.Lista;
 import Modelos.Produto;
@@ -36,11 +37,13 @@ public class VendaR extends javax.swing.JPanel {
     private DefaultComboBoxModel model;
     private DefaultTableModel modelo;
     private BufferedImage image;
+    private Funcionario func;
     private double total;
     /**
      * Creates new form Venda
      */
-    public VendaR() {
+    public VendaR(Funcionario func) {
+        this.func= (Funcionario) func;
         gestor = new ListaDAOImpl();
         gestor1 = new ClienteDAOImpl();
         gestor2 = new VendaDAOImpl();
@@ -414,6 +417,7 @@ public class VendaR extends javax.swing.JPanel {
 
     private void vndrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vndrActionPerformed
        int quantidade = Integer.parseInt(valorField.getText());
+       double valor = Double.parseDouble(valorField.getText());
        
 
         int selectedIndex = combox.getSelectedIndex();
@@ -429,7 +433,10 @@ public class VendaR extends javax.swing.JPanel {
           Cliente cliente = (Cliente) clientes.get(selectedIndex);
           List cesto = gestor.buscarListaCliente(cliente);
           try {
-//            Venda venda = new Venda();
+            Venda venda = new Venda(func,cesto,quantidade);
+            venda.setValorPago(total);
+            gestor2.efetuarVenda(venda);
+            JOptionPane.showMessageDialog(null, "Venda efetuada!");
         } catch (Exception e) {
         }
     }else{

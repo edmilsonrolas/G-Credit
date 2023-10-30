@@ -5,8 +5,9 @@
 package Views.Painels;
 
 import Controllers.FuncionarioDAOImpl;
+import Modelos.Funcionario;
 import Views.FreshUi;
-import Views.Home;
+
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -35,7 +36,7 @@ import raven.toast.Notifications;
  * @author Matavele's
  */
 public class Logino extends JPanel {
-
+    private final FuncionarioDAOImpl gestor;
     private final JTextField user;
     private final JPasswordField pass;
     private final JCheckBox lembrete;
@@ -76,7 +77,7 @@ public class Logino extends JPanel {
     }
 
     public Logino(JFrame frame) {
-
+        gestor = new FuncionarioDAOImpl();
         init();
         GlassPanePopup.install(frame);
         Notifications.getInstance().setJFrame(frame);
@@ -110,14 +111,22 @@ public class Logino extends JPanel {
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                if ("admin".equals(user.getText())) {
+                Funcionario func = gestor.credencial(user.getText(), new String(pass.getPassword()));
+                if (func!=null ) {
+                    if(func.getNivelAcesso().equals("admin")){
 
                     FreshUi casa = (FreshUi) frame;
-                    casa.setPanel(new Log(casa));
+                    casa.setPanel(new Log(casa,func));
                     casa.setVisible(true);
                     repaint();
                     revalidate();
+                    }else{
+                        FreshUi casa = (FreshUi) frame;
+                    casa.setPanel(new Log(casa,func));
+                    casa.setVisible(true);
+                    repaint();
+                    revalidate();
+                    }
                 } else {
 
                     Notifications.getInstance().show(Notifications.Type.ERROR, "Credenciais invalidas, tente novamente!");

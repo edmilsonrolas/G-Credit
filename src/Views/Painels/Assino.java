@@ -6,7 +6,7 @@ package Views.Painels;
 
 import Controllers.FuncionarioDAOImpl;
 import Views.FreshUi;
-import Views.Home;
+
 import Views.Painels.Componentes.PasswordStrengthStatus;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Component;

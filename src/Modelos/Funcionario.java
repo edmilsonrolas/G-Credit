@@ -6,12 +6,15 @@ package Modelos;
 
 import Abstract.Pessoa;
 import java.io.Serializable;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Matavele's
  */
 public class Funcionario extends Pessoa implements Serializable{
+    private ImageIcon perfil;
+
     
     private String username;
     private String senha;
@@ -44,6 +47,13 @@ public class Funcionario extends Pessoa implements Serializable{
 
     public double getBonus() {
         return bonus;
+    }
+    public ImageIcon getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(ImageIcon perfil) {
+        this.perfil = perfil;
     }
 
     public void setUsername(String username) {

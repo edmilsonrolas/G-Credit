@@ -31,13 +31,14 @@ import javax.swing.table.DefaultTableModel;
  * @author Matavele's
  */
 public class ClienteR extends javax.swing.JPanel {
-    
+
     private ClienteDAOImpl gestor;
     private CategoriaDAOImpl gero;
     private DefaultComboBoxModel model;
     private BufferedImage image;
-    
+
     private DefaultTableModel modelo;
+
     /**
      * Creates new form Venda
      */
@@ -45,7 +46,7 @@ public class ClienteR extends javax.swing.JPanel {
         gero = new CategoriaDAOImpl();
         gestor = new ClienteDAOImpl();
         initComponents();
-        
+
         try {
             // Carregue a imagem desejada (substitua o caminho pelo caminho do seu arquivo de imagem)
             image = ImageIO.read(new File("src//Icones//Abstract-Wallpaper-HD-For-Desktop.jpg"));
@@ -66,59 +67,56 @@ public class ClienteR extends javax.swing.JPanel {
         tabela();
         combo();
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (image != null) {
             g.drawImage(image, 0, 0, this);
-            
-          
-            
+
         }
-        
 
     }
-    
-    public void tabela(){
+
+    public void tabela() {
         modelo.setRowCount(0);
-        
+
         List clientes = gestor.listarCliente();
-        
+
         Iterator it = clientes.iterator();
-        
-        while(it.hasNext()){
+
+        while (it.hasNext()) {
             Cliente cliente = (Cliente) it.next();
-            
+
             Object[] fila = new Object[6];
-            
+
             fila[0] = cliente.getId();
             fila[1] = cliente.getNome();
             fila[2] = cliente.getApelido();
             fila[3] = cliente.getCategoria_cliente().getNome();
             fila[4] = cliente.getDateCreated();
             fila[5] = cliente.getContacto();
-            
+
             modelo.addRow(fila);
         }
-        
+
         tabela.setModel(modelo);
-       
+
     }
-    
-    public void combo(){
-         List cat = gero.listarCategorias();
+
+    public void combo() {
+        List cat = gero.listarCategorias();
 
         Iterator it = cat.iterator();
-        
+
         while (it.hasNext()) {
-            
+
             Categoria produto = (Categoria) it.next();
             String nome = produto.getNome();
 
             model.addElement(nome);
         }
-        
+
         jComboBox1.setModel(model);
     }
 
@@ -274,6 +272,11 @@ public class ClienteR extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
 
         panelBorder1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -290,21 +293,22 @@ public class ClienteR extends javax.swing.JPanel {
     }//GEN-LAST:event_apelidoFieldActionPerformed
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-       String nome = nomeField.getText();
+        String nome = nomeField.getText();
         String apelido = apelidoField.getText();
         String contato = contField.getText();
-        
+
         int selectedIndex = jComboBox1.getSelectedIndex();
         if (selectedIndex == -1) {
             JOptionPane.showMessageDialog(null, "Selecione uma Categoria.");
             return;
         }
-        
+
         List cat = gero.listarCategorias();
-        
+
         if (cat != null && selectedIndex >= 0 && selectedIndex < cat.size()) {
             Categoria prod = (Categoria) cat.get(selectedIndex);
-            Cliente cliente = new Cliente(prod,nome,apelido,contato);
+            Cliente cliente = new Cliente(prod, nome, apelido, contato);
+            cliente.setPerfil((ImageIcon) imageAvatar1.getIcon());
 
             try {
                 gestor.adicionarCliente(cliente);
@@ -322,7 +326,7 @@ public class ClienteR extends javax.swing.JPanel {
     }//GEN-LAST:event_registrarActionPerformed
 
     private void alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarActionPerformed
-       List<Categoria> cs = gero.listarCategorias();
+        List<Categoria> cs = gero.listarCategorias();
         List<Cliente> clientes = gestor.listarCliente();
         int com = jComboBox1.getSelectedIndex();
         int selected = tabela.getSelectedRow();
@@ -343,9 +347,9 @@ public class ClienteR extends javax.swing.JPanel {
                         cliente.setApelido(apelido);
                         cliente.setContacto(contacto);
                         cliente.setCategoria_cliente(cat);
-                        
+
                         gestor.atualizarCliente(cliente);
-                        
+
                     }
                 }
                 tabela();
@@ -362,17 +366,36 @@ public class ClienteR extends javax.swing.JPanel {
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            
+
             // Carregue a imagem no JLabel
             ImageIcon imageIcon = new ImageIcon(selectedFile.getAbsolutePath());
-            String caminho = selectedFile.getAbsolutePath();
-            System.out.println(caminho);
+
             imageAvatar1.setIcon(imageIcon);
             revalidate();
             repaint();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-    
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+
+        int selected = tabela.getSelectedRow();
+        if (selected != -1) {
+            int id = (int) modelo.getValueAt(selected, 0);
+
+            Cliente cliente = gestor.buscarCliente(id);
+            nomeField.setText(cliente.getNome());
+            apelidoField.setText(cliente.getApelido());
+            contField.setText(cliente.getContacto());
+            jComboBox1.setSelectedItem(cliente.getCategoria_cliente());
+            imageAvatar1.setIcon(cliente.getPerfil());
+            revalidate();
+            repaint();
+        } else {
+            System.out.println("yoo");
+        }
+
+    }//GEN-LAST:event_tabelaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alterar;

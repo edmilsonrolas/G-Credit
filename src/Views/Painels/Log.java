@@ -4,6 +4,7 @@
  */
 package Views.Painels;
 
+import Modelos.Funcionario;
 import Views.FreshUi;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;
@@ -45,7 +46,9 @@ public class Log extends javax.swing.JPanel {
     private ListaC painelLista;
     private CategoriaR painelCateg;
     private ClienteR painelCliente;
-    private Funcionario painelFunc;
+    private FuncionarioR painelFunc;
+    private Funcionario funcionario;
+    private Funcionarios painelfuncionario;
     private DrawerController dr;
     private JFrame frame;
     private BufferedImage image;
@@ -57,14 +60,16 @@ public class Log extends javax.swing.JPanel {
      *
      * @param frame
      */
-    public Log(JFrame frame) {
-        painelVenda = new VendaR();
+    public Log(JFrame frame, Funcionario func) {
+        funcionario = (Funcionario) func;
+        painelVenda = new VendaR(funcionario);
         painelForn = new FornecedorR();
         painelProd = new ProdutoR();
         painelLista = new ListaC();
         painelCateg = new CategoriaR();
         painelCliente = new ClienteR();
-        painelFunc = new Funcionario();
+        painelFunc = new FuncionarioR();
+        painelfuncionario = new Funcionarios();
         this.frame = frame;
 //        UIManager.put("Button.arc", 999);
         initComponents();
@@ -91,6 +96,7 @@ public class Log extends javax.swing.JPanel {
         jButton23.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton24.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton25.putClientProperty("JButton.buttonType", "toolBarButton");
+        jButton14.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton2.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton3.putClientProperty("JButton.buttonType", "toolBarButton");
         jButton4.putClientProperty("JButton.buttonType", "toolBarButton");
@@ -170,6 +176,7 @@ public class Log extends javax.swing.JPanel {
         jButton23 = new javax.swing.JButton();
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
@@ -332,7 +339,6 @@ public class Log extends javax.swing.JPanel {
         jLabel19.setText("Principal");
         jPanel8.add(jLabel19);
 
-        jButton20.setForeground(new java.awt.Color(255, 255, 255));
         jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/customer_40px.png"))); // NOI18N
         jButton20.setText("Clientes");
         jButton20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -343,7 +349,6 @@ public class Log extends javax.swing.JPanel {
         });
         jPanel8.add(jButton20);
 
-        jButton21.setForeground(new java.awt.Color(255, 255, 255));
         jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/category_40px.png"))); // NOI18N
         jButton21.setText("Categoria");
         jButton21.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -359,7 +364,6 @@ public class Log extends javax.swing.JPanel {
         jLabel20.setText("Admin");
         jPanel8.add(jLabel20);
 
-        jButton22.setForeground(new java.awt.Color(255, 255, 255));
         jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/sell_40px.png"))); // NOI18N
         jButton22.setText("Venda");
         jButton22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -370,7 +374,6 @@ public class Log extends javax.swing.JPanel {
         });
         jPanel8.add(jButton22);
 
-        jButton23.setForeground(new java.awt.Color(255, 255, 255));
         jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/qr_code_40px.png"))); // NOI18N
         jButton23.setText("Recargas");
         jButton23.setHideActionText(true);
@@ -382,7 +385,6 @@ public class Log extends javax.swing.JPanel {
         });
         jPanel8.add(jButton23);
 
-        jButton24.setForeground(new java.awt.Color(255, 255, 255));
         jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/supplier_40px.png"))); // NOI18N
         jButton24.setText("Operadoras");
         jButton24.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -393,7 +395,6 @@ public class Log extends javax.swing.JPanel {
         });
         jPanel8.add(jButton24);
 
-        jButton25.setForeground(new java.awt.Color(255, 255, 255));
         jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/shopping_40px.png"))); // NOI18N
         jButton25.setText("Lista");
         jButton25.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -403,6 +404,16 @@ public class Log extends javax.swing.JPanel {
             }
         });
         jPanel8.add(jButton25);
+
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/conference_foreground_selected_40px.png"))); // NOI18N
+        jButton14.setText("Colaboradores");
+        jButton14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jButton14);
 
         jPanel4.add(jPanel8);
 
@@ -467,6 +478,7 @@ public class Log extends javax.swing.JPanel {
                 .addChild(jButton23)
                 .addChild(jButton24)
                 .addChild(jButton25)
+                .addChild(jButton14)
                 .addFooter(jPanel6)
                 .build();
             
@@ -519,7 +531,7 @@ public class Log extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        painelVenda = new VendaR();
+        painelVenda = new VendaR(funcionario);
         jPanel9.removeAll();
         jPanel9.add(painelVenda, java.awt.BorderLayout.CENTER);
         revalidate();
@@ -624,12 +636,20 @@ public class Log extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        painelFunc = new Funcionario();
+        painelFunc = new FuncionarioR();
         jPanel9.removeAll();
         jPanel9.add(painelFunc, java.awt.BorderLayout.CENTER);
         revalidate();
         repaint();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        painelfuncionario = new Funcionarios();
+        jPanel9.removeAll();
+        jPanel9.add(painelfuncionario, java.awt.BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }//GEN-LAST:event_jButton14ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -638,6 +658,7 @@ public class Log extends javax.swing.JPanel {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
