@@ -20,16 +20,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Painels/Logino.java</file>
-            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Modelos/Venda.java</file>
-            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Modelos/Cliente.java</file>
-            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Painels/VendaR.java</file>
-            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Utilitarios/Util.java</file>
+            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Painels/ClienteR.java</file>
+            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Gwevissa/Gwevissa.java</file>
             <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/FreshUi.java</file>
             <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Painels/Assino.java</file>
+            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Painels/Funcionarios.java</file>
             <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Modelos/Funcionario.java</file>
-            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Painels/Componentes/PasswordStrengthStatus.java</file>
-            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Abstract/Pessoa.java</file>
+            <file>file:/C:/Users/Matavele's/Documents/NetBeansProjects/Mercearia/src/Views/Painels/FuncionarioR.java</file>
         </group>
     </open-files>
 </project-private>
