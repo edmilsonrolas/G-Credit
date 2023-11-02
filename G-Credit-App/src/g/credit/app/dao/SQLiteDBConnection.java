@@ -161,6 +161,49 @@ public class SQLiteDBConnection {
             statement.execute(sql);
         }
     }
+    
+    /**
+     * Cria a tabela 'sales' na base de dados, se ela ainda não existir.
+     * A tabela 'sales' armazenará informações sobre vendas, incluindo IDs de venda, data de venda, cliente, utilizador e outras informações relacionadas a vendas.
+     *
+     * @throws SQLException Se ocorrer um erro durante a criação da tabela.
+     */
+    public static void createSalesTable() throws SQLException {
+        String sql = "CREATE TABLE IF NOT EXISTS sales ("
+                + "saleID INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "saleDate TEXT,"
+                + "userID INTEGER,"
+                + "clientID INTEGER,"
+                + "totalAmount REAL,"
+                + "totalPrice REAL,"
+                + "profit REAL,"
+                + "FOREIGN KEY (userID) REFERENCES users(userID),"
+                + "FOREIGN KEY (clientID) REFERENCES clients(customerID)"
+                + ")";
+
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(sql);
+        }
+    }
+    
+    /**
+     * Cria a tabela 'saleTopups' na base de dados, se ela ainda não existir.
+     *
+     * @throws SQLException Se ocorrer um erro durante a criação da tabela.
+     */
+    public static void createSaleTopupsTable() throws SQLException {
+        String sql = "CREATE TABLE IF NOT EXISTS saleTopups ("
+                + "saleTopupID INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "topupID TEXT,"
+                + "quantity INTEGER,"
+                + "saleID INTEGER"
+                + ")";
+
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(sql);
+        }
+    }
+    
 
 }
 

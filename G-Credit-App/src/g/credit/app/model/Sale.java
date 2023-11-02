@@ -5,6 +5,7 @@
 package g.credit.app.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,13 +27,13 @@ public class Sale {
     private double totalPrice;
     private double profit;
 
-//    public Sale(User user, Client client) {
-//        this.saleDate = LocalDate.now();
-//        this.user = user;
-//        this.client = client;
-//        this.topups = new ArrayList<>();
-//        this.totalAmount = 0.0;
-//    }
+    public Sale(User user, Client client) {
+        this.saleDate = LocalDate.now();
+        this.user = user;
+        this.client = client;
+        this.topups = new ArrayList<>();
+        this.totalAmount = 0.0;
+    }
 
     /**
      * Construtor da classe Sale.
@@ -133,17 +134,17 @@ public class Sale {
         return topups;
     }
 
-//    public void addTopup(Topup topup) {
-//        topups.add(topup);
-//        // Atualizar o valor total da venda quando um produto é adicionado
-//        totalAmount += topup.getPrice();
-//    }
-//
-//    public void removeTopup(Topup topup) {
-//        topups.remove(topup);
-//        // Atualizar o valor total da venda quando um produto é removido
-//        totalAmount -= topup.getPrice();
-//    }
+    public void addTopup(Topup topup) {
+        topups.add(topup);
+        // Atualizar o valor total da venda quando um produto é adicionado
+        totalAmount += topup.getPrice();
+    }
+
+    public void removeTopup(Topup topup) {
+        topups.remove(topup);
+        // Atualizar o valor total da venda quando um produto é removido
+        totalAmount -= topup.getPrice();
+    }
 
     /**
      * Obtém o valor total da venda.
@@ -178,7 +179,7 @@ public class Sale {
     private void calculateTotalAmount() {
         totalAmount = 0;
         for (Topup topup : topups) {
-            totalAmount += topup.getPrice();
+            totalAmount += topup.getValue();
         }
     }
     
