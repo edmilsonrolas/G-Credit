@@ -22,35 +22,26 @@ public class Sale {
     private LocalDate saleDate;
     private User user;
     private Client client;
-    private final List<Topup> topups;
-    private double totalAmount;
+    private final List<SaleTopup> topups;
+    private double totalValue;
     private double totalPrice;
     private double profit;
-
-    public Sale(User user, Client client) {
-        this.saleDate = LocalDate.now();
-        this.user = user;
-        this.client = client;
-        this.topups = new ArrayList<>();
-        this.totalAmount = 0.0;
-    }
 
     /**
      * Construtor da classe Sale.
      * Cria um novo objeto `Sale` com a lista de recargas, o cliente e o utilizador associados. A data da venda é definida como a data atual.
      *
-     * @param topups A lista de recargas vendidas.
      * @param client O cliente para o qual a venda é realizada.
      * @param user O utilizador que efetuou a venda.
      */
-    public Sale(List<Topup> topups, Client client, User user) {
-        this.topups = topups;
+    public Sale(Client client, User user) {
+        topups = new ArrayList<>();
         this.client = client;
         this.user = user;
-        this.saleDate = LocalDate.now(); 
-        calculateTotalAmount();
-        calculateTotalPrice();
-        calculateProfit();
+        saleDate = LocalDate.now(); 
+        totalValue = 0.0;
+        totalPrice = 0.0;
+        profit = 0.0;
     }
     
     /**
@@ -130,20 +121,48 @@ public class Sale {
      *
      * @return A lista de recargas vendidas.
      */
-    public List<Topup> getTopups() {
+    public List<SaleTopup> getSaleTopups() {
         return topups;
     }
 
-    public void addTopup(Topup topup) {
+    /**
+     * Adiciona uma recarga à venda.
+     *
+     * @param topup A recarga a ser adicionada.
+     * @throws IllegalArgumentException Se a recarga for nula ou a quantidade for inválida.
+     */
+    public void addSaleTopup(SaleTopup topup) {
+        if (topup == null) {
+            throw new IllegalArgumentException("Recarga não pode ser nula.");
+        }
+        if (topup.getQuantity() <= 0) {
+            throw new IllegalArgumentException("A quantidade da recarga deve ser maior que zero.");
+        }
+
         topups.add(topup);
-        // Atualizar o valor total da venda quando um produto é adicionado
-        totalAmount += topup.getPrice();
+        totalValue += topup.getTotalValue();
+        totalPrice += topup.getTotalPrice();
+        profit = totalValue * 0.002;
     }
 
-    public void removeTopup(Topup topup) {
+    /**
+     * Remove uma recarga da venda.
+     *
+     * @param topup A recarga a ser removida.
+     * @throws IllegalArgumentException Se a recarga for nula ou não estiver na lista.
+     */
+    public void removeSaleTopup(SaleTopup topup) {
+        if (topup == null) {
+            throw new IllegalArgumentException("Recarga não pode ser nula.");
+        }
+        if (!topups.contains(topup)) {
+            throw new IllegalArgumentException("A recarga não está na lista de recargas da venda.");
+        }
+
         topups.remove(topup);
-        // Atualizar o valor total da venda quando um produto é removido
-        totalAmount -= topup.getPrice();
+        totalValue -= topup.getTotalValue();
+        totalPrice -= topup.getTotalPrice();
+        profit = totalValue * 0.002;
     }
 
     /**
@@ -151,8 +170,8 @@ public class Sale {
      *
      * @return O valor total da venda.
      */
-    public double getTotalAmount() {
-        return totalAmount;
+    public double getTotalValue() {
+        return totalValue;
     }
 
     /**
@@ -173,33 +192,6 @@ public class Sale {
         return profit;
     }
     
-    /**
-     * Calcula o valor total da venda com base nas recargas vendidas.
-     */
-    private void calculateTotalAmount() {
-        totalAmount = 0;
-        for (Topup topup : topups) {
-            totalAmount += topup.getValue();
-        }
-    }
-    
-    /**
-     * Calcula o preço total da venda com base nas recargas vendidas.
-     */
-    private void calculateTotalPrice() {
-        totalPrice = 0;
-        for (Topup topup : topups) {
-            totalPrice += topup.getPrice();
-        }
-    }
-
-    /**
-     * Calcula o lucro da venda como 0.2 por cada 100 meticais vendidos.
-     */
-    private void calculateProfit() {
-        // Lucro é 0.2 por cada 100 meticais vendidos
-        profit = totalAmount * 0.002;
-    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -209,7 +201,7 @@ public class Sale {
         sb.append(", user=").append(user);
         sb.append(", client=").append(client);
         sb.append(", topups=").append(topups);
-        sb.append(", totalAmount=").append(totalAmount);
+        sb.append(", totalValue=").append(totalValue);
         sb.append(", totalPrice=").append(totalPrice);
         sb.append(", profit=").append(profit);
         sb.append('}');
